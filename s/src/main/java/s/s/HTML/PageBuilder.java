@@ -15,18 +15,17 @@ public class PageBuilder {
     }
 
     public PageBuilder addParagraph(String para) {
-        page.append("<p> ")
-        .append(para)
-        .append(" </p>");
+        page.append(EF.newParagraph(para));
         return this; 
     }
 
     public PageBuilder addTable(Table tb){
-        page.append("<Table>");
-        for(String th : tb.getTitles()){
-            page.append(EF.newTableHeading(th).toString());
-        }
-        page.append("</Table>");
+        page.append(EF.newTable(tb));
+        return this;
+    }
+
+    public PageBuilder addDiv(Page page){
+        page.append(EF.newDiv(page));
         return this;
     }
 

@@ -4,7 +4,7 @@ public class TableBuilder {
 
     public Table tab;
 
-    TableBuilder(int row, int column){
+    public TableBuilder(int row, int column){
         tab = new Table(row, column);
     }
 
@@ -30,6 +30,10 @@ public class TableBuilder {
             tab.setContent(i, col, conts[i]);
         }
         return this;
+    }
+
+    public Table build(){
+        return tab;
     }
     
 }
