@@ -1,9 +1,12 @@
 package s.s;
 
+import java.awt.Desktop;
 import java.io.File;
+//import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import s.s.HTML.ListBuilder;
 import s.s.HTML.Page;
 import s.s.HTML.PageBuilder;
 import s.s.HTML.TableBuilder;
@@ -11,7 +14,7 @@ import s.s.HTML.TableBuilder;
 public class App 
 {
 
-    public static void main( String[] args )
+    public static void main( String[] args ) throws IOException
     {
         System.out.println( "Hello World!" );
         TableBuilder tb = new TableBuilder(2, 3);
@@ -26,7 +29,20 @@ public class App
              .setRow(0, new String[]{"1","2","3"})
              .setRow(1, new String[]{"3","4","5"})
              .build()
-         ).Build();
+        ).addDiv(
+            new PageBuilder()
+            .addParagraph("Goodbye World!")
+            .addParagraph("LMAO")
+            .Build().getBody() 
+        ).addList(
+          new ListBuilder(0)
+           .addElems(new String[]{"init","nini","bili"})
+           .Build()
+        ).addList(
+          new ListBuilder(2)
+           .addElems(new String[]{"Book","has words","man","has pepe"})
+           .Build()
+        ).Build();
         System.out.println(p.toString());
         String page = 
             new StringBuilder()
@@ -51,5 +67,7 @@ public class App
                 System.out.println("An error occurred.");
                 e.printStackTrace();
               }
+            File htmlFile = new File("test1.html");
+            Desktop.getDesktop().browse(htmlFile.toURI());
     }
 }

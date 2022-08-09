@@ -29,6 +29,10 @@ public class ElementFactory {
         public Table getTable(){
             return (Table) this.msg;
         }
+
+        public LList getList(){
+            return (LList) this.msg;
+        }
     }
 
     public ElementFactory() {
@@ -46,7 +50,11 @@ public class ElementFactory {
         return new Element(ElementID.Table, msg);
     }
 
-    public Element newDiv(Page pg){
+    public Element newDiv(ArrayList<Element> pg){
         return new Element(ElementID.Div, pg);
+    }
+
+    public Element newList(LList list){
+        return new Element(ElementID.List, list);
     }
 }

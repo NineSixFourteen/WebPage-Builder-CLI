@@ -1,5 +1,9 @@
 package s.s.HTML;
 
+import java.util.ArrayList;
+
+import s.s.HTML.ElementFactory.Element;
+
 public class PageBuilder {
 
     private Page page;
@@ -24,8 +28,13 @@ public class PageBuilder {
         return this;
     }
 
-    public PageBuilder addDiv(Page page){
-        page.append(EF.newDiv(page));
+    public PageBuilder addDiv(ArrayList<Element> page2){
+        page.append(EF.newDiv(page2));
+        return this;
+    }
+
+    public PageBuilder addList(LList list ){
+        page.append(EF.newList(list));
         return this;
     }
 
