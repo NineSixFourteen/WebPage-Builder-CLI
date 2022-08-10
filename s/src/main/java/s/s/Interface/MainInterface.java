@@ -5,6 +5,7 @@ import java.util.Scanner;
 import s.s.HTML.Page;
 import s.s.HTML.PageBuilder;
 import s.s.Interface.Html_Interfaces.HTMLInterface;
+import s.s.Interface.Tools.UserInput;
 
 public class MainInterface {
 
@@ -35,7 +36,7 @@ public class MainInterface {
 
     private static void makeBasicPage(PageBuilder pb, Scanner scan) {
         System.out.println("Please enter the name of the webpage");
-        String name = scan.nextLine();
+        String name = UserInput.getLine(scan);
         pb.setTitle(name);
         fillOutPage(pb, scan);
     }
@@ -51,7 +52,7 @@ public class MainInterface {
                 .append("  3. Add functionality to the webpage\n") 
                 .append("  4. Exit\n")
             );
-            int option = scan.nextInt();
+            int option = UserInput.getIntBewteen(scan, 1, 4);
             switch(option){
                 case 1: 
                     HTMLInterface.init(pb,scan);

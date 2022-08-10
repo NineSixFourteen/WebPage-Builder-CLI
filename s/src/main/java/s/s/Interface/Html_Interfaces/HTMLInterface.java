@@ -1,12 +1,10 @@
 package s.s.Interface.Html_Interfaces;
 
 import java.awt.Desktop;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-
 import s.s.HTML.Page;
 import s.s.HTML.PageBuilder;
 import s.s.Interface.Tools.UserInput;
@@ -22,7 +20,7 @@ public class HTMLInterface {
                 .append("Pleae select an option\n")
                 .append("  1.View elements\n")
                 .append("  2.Create new element\n")
-                .append("  3.View Page in browser")
+                .append("  3.View Page in browser\n")
                 .append("  4.return to previous option\n")
             );
             int option = UserInput.getIntBewteen(scan, 1,4); 
@@ -61,12 +59,7 @@ public class HTMLInterface {
         } catch(Exception e){
             e.printStackTrace();
         }
-  
-        
     }
-
-
-
 }
 
    

@@ -36,8 +36,18 @@ public class PageBuilder {
         return this; 
     }
 
+    public PageBuilder addParagraph(String para, String id, String classs){
+        page.append(EF.newParagraph(para, id, classs));
+        return this;
+    }
+
     public PageBuilder addTable(Table tb){
         page.append(EF.newTable(tb));
+        return this;
+    }
+
+    public PageBuilder addTable(Table tb, String id, String classs){
+        page.append(EF.newTable(tb, id, classs));
         return this;
     }
 
@@ -46,13 +56,28 @@ public class PageBuilder {
         return this;
     }
 
+    public PageBuilder addDiv(ArrayList<Element> page2, String id, String classs){
+        page.append(EF.newDiv(page2, id, classs));
+        return this;
+    }
+
     public PageBuilder addList(LList list ){
         page.append(EF.newList(list));
         return this;
     }
 
+    public PageBuilder addList(LList list, String id, String classs){
+        page.append(EF.newList(list, id, classs));
+        return this;
+    }
+
     public PageBuilder addHeading(String heading, int level) {
         page.append(EF.newHeading(heading));
+        return this;
+    }
+
+    public PageBuilder addHeading(String heading, int level, String id, String classs){
+        page.append(EF.newHeading(heading, id, classs));
         return this;
     }
 

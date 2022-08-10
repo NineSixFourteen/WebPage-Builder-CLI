@@ -67,12 +67,12 @@ public class VEInterface {
 
     private static String deepInfo(Element element) {
         StringBuilder sb =  new StringBuilder()
-         .append("Name : ")
-         .append("TODO\n")
-         .append("ID : ")
-         .append("TODO\n")
-         .append("Type : ");
-         switch(element.getId()){
+         .append("Class : ")
+         .append(element.getClasss())
+         .append("\nID : ")
+         .append(element.getId())
+         .append("\nType : ");
+         switch(element.getType()){
             case Div:
                 sb.append("Div");
                 sb.append("TODO");
@@ -136,11 +136,11 @@ public class VEInterface {
     private static String shallowInfo(Element element) {
         StringBuilder sb = new StringBuilder();
         sb.append("( id = ")
-         .append("TODO")
-         .append(", name = ")
-         .append( "TODO")
+         .append(element.getId())
+         .append(", class = ")
+         .append(element.getClass())
          .append(", type = ");
-        switch(element.getId()){
+        switch(element.getType()){
             case Div:
                 sb.append("Div, Number of elements : ")
                 .append(element.getElements().size())

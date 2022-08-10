@@ -4,36 +4,19 @@ import java.util.ArrayList;
 
 import s.s.HTML.ElementFactory.Element;
 
-public class Page {
+//Make a string with a html page From Page
 
-    private String Title;
-    private ArrayList<Element> body; 
-    
-    public Page() {
-        Title = "No Title";
-        body = new ArrayList<>(); 
-       } 
+public class PageMaker {
 
-    public ArrayList<Element> getBody() {
-        return body;
+    Page page;
+
+    public PageMaker(Page page){
+        this.page = page;
     }
 
-    public Page setTitle(String title) {
-        Title = title;
-        return this;
-    }
-
-    public String getTitle() {
-        return Title;
-    }
-
-    public Page append(Element s){
-        body.add(s);
-        return this;
-    }
     @Override
     public String toString() {
-        return makeString(0, new StringBuilder(), this.body).toString();
+        return makeString(0, new StringBuilder(), page.getBody()).toString();
     }
 
     public StringBuilder makeString(int ind, StringBuilder sb, ArrayList<Element> body) {
@@ -62,30 +45,7 @@ public class Page {
                      .append(" </p>\n");
                     break;
                 case Table:
-                    sb.append("<table>\n")
-                     .append(start)
-                     .append("  <tr>\n");
-                    Table t = elem.getTable();
-                    for(String title : t.getTitles()){
-                        sb.append(start)
-                         .append("    <th>")
-                         .append(title)
-                         .append("</th>\n");
-                    }
-                    sb.append("  </tr>\n");
-                    for(String[] row : t.getContents()){
-                        sb.append(start)
-                         .append("  <tr>\n");
-                        for(String cont : row ){
-                            sb.append(start)
-                             .append("    <td>")
-                             .append(cont)
-                             .append("</td>\n");
-                        }
-                        sb.append(start)
-                         .append("  </tr>\n");
-                    }
-                    sb.append("</table>\n");
+                    makeTable(sb, start, elem.getTable());
                     break;
                 case List:
                     makeList(sb, start, elem.getList());
@@ -95,6 +55,33 @@ public class Page {
             }
         }
         return sb;
+    }
+
+    private StringBuilder makeTable(StringBuilder sb, String start, Table tab){
+        sb.append("<table>\n")
+        .append(start)
+        .append("  <tr>\n");
+       for(String title : tab.getTitles()){
+           sb.append(start)
+            .append("    <th>")
+            .append(title)
+            .append("</th>\n");
+       }
+       sb.append("  </tr>\n");
+       for(String[] row : tab.getContents()){
+           sb.append(start)
+            .append("  <tr>\n");
+           for(String cont : row ){
+               sb.append(start)
+                .append("    <td>")
+                .append(cont)
+                .append("</td>\n");
+           }
+           sb.append(start)
+            .append("  </tr>\n");
+       }
+       sb.append("</table>\n");
+       return sb;
     }
 
     private StringBuilder makeList(StringBuilder sb, String space, LList list){
@@ -142,5 +129,5 @@ public class Page {
         }
         return sb;
     }
-    
+
 }
