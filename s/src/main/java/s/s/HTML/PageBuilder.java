@@ -18,6 +18,19 @@ public class PageBuilder {
         return page;
     }
 
+    public PageBuilder setTitle(String title) {
+        page.setTitle(title);
+        return this;
+    }
+
+    public String getTitle(){
+        return page.getTitle();
+    }
+
+    public ArrayList<Element> getBody(){
+        return this.page.getBody();
+    }
+
     public PageBuilder addParagraph(String para) {
         page.append(EF.newParagraph(para));
         return this; 

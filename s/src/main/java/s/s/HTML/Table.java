@@ -38,6 +38,4 @@ public class Table {
         return columnsLength;
     }
 
-
-    
 }

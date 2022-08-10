@@ -6,11 +6,11 @@ import s.s.HTML.ElementFactory.Element;
 
 public class Page {
 
-    String Title;
-    ArrayList<Element> body; 
+    private String Title;
+    private ArrayList<Element> body; 
     
     public Page() {
-        Title = "";
+        Title = "No Title";
         body = new ArrayList<>(); 
        } 
 
@@ -18,11 +18,37 @@ public class Page {
         return body;
     }
 
+    public Page setTitle(String title) {
+        Title = title;
+        return this;
+    }
+
+    public String getTitle() {
+        return Title;
+    }
+
     public Page append(Element s){
         body.add(s);
         return this;
     }
-
+    /* 
+    String page = 
+            new StringBuilder()
+            .append("<!DOCTYPE html>\n")
+            .append("<html lang=\"en\"\n")
+            .append("<head>\n")
+            .append("<title>")
+            .append(p.getTitle())
+            .append("</title>\n")
+            .append("<meta charset=\"UTF-8\">\n")
+            .append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n")
+            .append("</head>\n")
+            .append("<body\n")
+            .append(p.toString())
+            .append("</body>\n")
+            .append("</html>")
+            .toString();
+            */
     @Override
     public String toString() {
         return makeString(0, new StringBuilder(), this.body).toString();
