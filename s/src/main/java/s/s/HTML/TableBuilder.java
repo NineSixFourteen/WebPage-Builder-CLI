@@ -13,6 +13,11 @@ public class TableBuilder {
         return this;
     }
 
+    public TableBuilder setTitles(String[] titles ) {
+        tab.setTitles(titles);
+        return this;
+    }
+
     public TableBuilder setContent(int r, int c, String cont) {
         tab.setContent(r, c, cont);
         return this;
@@ -29,6 +34,11 @@ public class TableBuilder {
         for(int i = 0; i < conts.length; i++) {
             tab.setContent(i, col, conts[i]);
         }
+        return this;
+    }
+
+    public TableBuilder setBody(String[][] body){
+        tab.setContents(body);
         return this;
     }
 

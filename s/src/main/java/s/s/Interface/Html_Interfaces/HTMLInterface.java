@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import s.s.HTML.Page;
 import s.s.HTML.PageBuilder;
+import s.s.Interface.Tools.UserInput;
 
 
 public class HTMLInterface {
@@ -24,7 +25,7 @@ public class HTMLInterface {
                 .append("  3.View Page in browser")
                 .append("  4.return to previous option\n")
             );
-            int option = scan.nextInt(); 
+            int option = UserInput.getIntBewteen(scan, 1,4); 
             switch(option) {
                 case 1: 
                     VEInterface.init(pb, scan);

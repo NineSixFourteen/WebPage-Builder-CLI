@@ -30,6 +30,14 @@ public class Table {
         return this;
     }
 
+    public void setContents(String[][] contents) {
+        this.contents = contents;
+    }
+
+    public void setTitles(String[] titles) {
+        this.titles = titles;
+    }
+
     public int noOfRows(){
         return titles.length;
     }

@@ -1,10 +1,11 @@
 package s.s.Interface.Html_Interfaces;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import s.s.HTML.ListBuilder;
 import s.s.HTML.PageBuilder;
+import s.s.HTML.TableBuilder;
+import s.s.Interface.Tools.UserInput;
 
 // Create Element Interface
 public class CEInterface {
@@ -22,8 +23,7 @@ public class CEInterface {
                 .append("  5. Div\n")
                 .append("Or type 0 to go back")
             );
-            scan.nextLine();
-            int option = scan.nextInt();
+            int option = UserInput.getIntBewteen(scan, 0, 5);
             switch(option){
                 case 0: 
                     run = false;
@@ -32,12 +32,13 @@ public class CEInterface {
                     addHeading(pb,scan);
                     break; 
                 case 2:
-                    addList(pb, scan);
-                    break;
-                case 3: 
                     addParagraph(pb,scan);
                     break;
+                case 3: 
+                    addList(pb, scan);
+                    break;
                 case 4:
+                    addTable(pb, scan);
                     break; 
                 case 5:
                     break; 
@@ -45,17 +46,30 @@ public class CEInterface {
         }
     }
 
+    private static void addTable(PageBuilder pb, Scanner scan) {
+        System.out.println("Please enter the Headings for your list seperated by a comma");
+        String[] headings = UserInput.getList(scan);
+        String[][] body = UserInput.getListofList(scan);
+        pb.addTable(
+            new TableBuilder(body.length, headings.length)
+             .setTitles(headings)
+             .setBody(body)
+             .build()
+        );
+    }
+
+
+
     private static void addParagraph(PageBuilder pb, Scanner scan) {
         System.out.println("Please enter your message");
-        String msg = scan.next();
-        pb.addParagraph(msg);
+        pb.addParagraph(UserInput.getLine(scan));
     }
 
     private static void addHeading(PageBuilder pb, Scanner scan) {
         System.out.println("Please enter the level of the heading you want bewteen 1 - 3");
-        int level = scan.nextInt();
+        int level = UserInput.getIntBewteen(scan, 1, 3);
         System.out.println("Please enter the text for the heading");
-        String msg = scan.next();
+        String msg = UserInput.getLine(scan);
         pb.addHeading(msg, level);
     }
 
@@ -65,18 +79,16 @@ public class CEInterface {
              .append("Please enter the type of list\n")
              .append("1. Orderderd  2.Unordered  3.Descriptive")
         );
-        int type = scan.nextInt();
+        int type = UserInput.getIntBewteen(scan, 1, 3);
         System.out.println("Please enter the items in yout list seperated by a comma");
-        ArrayList<String> items = new ArrayList<>();
-        scan.nextLine();
-        for(String item : scan.nextLine().split(",")){
-            items.add(item.strip());
-        } 
+        String[] items = UserInput.getList(scan);
         pb.addList(
             new ListBuilder(type)
-             .addElems(items.toArray(new String[0]))
+             .addElems(items)
              .Build()
             );
     }
+
+    
 
 }

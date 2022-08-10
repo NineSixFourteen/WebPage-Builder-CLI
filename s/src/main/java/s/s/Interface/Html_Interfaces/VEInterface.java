@@ -7,6 +7,7 @@ import s.s.HTML.LList;
 import s.s.HTML.PageBuilder;
 import s.s.HTML.Table;
 import s.s.HTML.ElementFactory.Element;
+import s.s.Interface.Tools.UserInput;
 
 //View Element Interface 
 public class VEInterface {
@@ -21,7 +22,7 @@ public class VEInterface {
              .append("  1. View an element in more detail")
              .append("  2. Go Back")
             );
-        int option = scan.nextInt();
+        int option = UserInput.getIntBewteen(scan, 0, 5);
         switch(option) {
             case 1: 
                 ViewElementsDeep(pb, scan);
@@ -36,7 +37,7 @@ public class VEInterface {
         boolean run = true ; 
         while(run) {
             System.out.println("Please select the element you would like to or 0 to go back or -1 to show the elements again");
-            int option = scan.nextInt(); 
+            int option = UserInput.getIntBewteen(scan, 0, 5);
             switch(option) {
                 case -1:
                     String out = allShallowInfo(pb);
@@ -112,6 +113,7 @@ public class VEInterface {
                 Table t = element.getTable();
                 TextTable tt = new TextTable(t.getTitles(), t.getContents());                                                         
                 tt.printTable(); 
+                System.out.println("");
                 break;
             default:
                 break;
