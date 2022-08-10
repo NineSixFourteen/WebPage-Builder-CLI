@@ -51,6 +51,11 @@ public class PageBuilder {
         return this;
     }
 
+    public PageBuilder addHeading(String heading, int level) {
+        page.append(EF.newHeading(heading));
+        return this;
+    }
+
     
     
 }

@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import s.s.HTML.Page;
 import s.s.HTML.PageBuilder;
+import s.s.Interface.Html_Interfaces.HTMLInterface;
 
 public class MainInterface {
 
@@ -11,7 +12,7 @@ public class MainInterface {
         PageBuilder pb = new PageBuilder(); 
         System.out.println(
             new StringBuilder()
-                .append("Welcome to this thing i built for somereason\n")
+                .append("Welcome to this thing I built for some reason\n")
                 .append("Would you like to \n")
                 .append("  1. Create an webpage from scratch\n")
                 .append("  2. Parse in an existing Page\n")
@@ -37,6 +38,34 @@ public class MainInterface {
         String name = scan.nextLine();
         pb.setTitle(name);
         fillOutPage(pb, scan);
+    }
+
+    private static void fillOutPage(PageBuilder pb, Scanner scan) {
+        boolean run = true; 
+        while(run){
+            System.out.println(
+                new StringBuilder()
+                .append("Please select the option you would like to\n")
+                .append("  1. Add an element to the webpage\n")
+                .append("  2. Add Styles to the webpage\n")
+                .append("  3. Add functionality to the webpage\n") 
+                .append("  4. Exit\n")
+            );
+            int option = scan.nextInt();
+            switch(option){
+                case 1: 
+                    HTMLInterface.init(pb,scan);
+                    break;
+                case 2: 
+                    break; 
+                case 3: 
+                    break; 
+                case 4:
+                    run = false;
+                    break;
+            }
+        }
+
     }
     
 }
