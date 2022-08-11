@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.util.Scanner;
 import s.s.HTML.Page;
 import s.s.HTML.PageBuilder;
+import s.s.HTML.PageMaker;
 import s.s.Interface.Tools.UserInput;
-
 
 public class HTMLInterface {
 
@@ -43,7 +43,7 @@ public class HTMLInterface {
 
     private static void loadPageInBrowser(PageBuilder pb) {
         Page p = pb.Build();
-        String page = p.toString();
+        String page = new PageMaker(p).toString();
         try {
             FileWriter myWriter = new FileWriter(p.getTitle() + ".html");
             myWriter.write(page);

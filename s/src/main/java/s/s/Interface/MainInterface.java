@@ -20,7 +20,7 @@ public class MainInterface {
                 .append("  3. Exit\n")
         );
         Scanner scan = new Scanner(System.in);
-        int option = scan.nextInt();
+        int option = UserInput.getIntBewteen(scan, 1, 3);
         switch(option){
             case 1: 
                 makeBasicPage(pb,scan); 
@@ -66,7 +66,5 @@ public class MainInterface {
                     break;
             }
         }
-
     }
-    
 }

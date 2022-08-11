@@ -35,20 +35,20 @@ public class PageMaker {
                     sb.append(start).append("</div>\n");
                     break;
                 case Heading:
-                    sb.append("<h1> ")
-                     .append(elem.getString())
-                     .append("</h1>\n");
+                    makeHeading(sb, start, elem);
                     break;
                 case P:
-                    sb.append("<p> ")
+                    sb.append("<p")
+                     .append(additionalInfo(elem))
+                     .append("> ")
                      .append(elem.getString())
                      .append(" </p>\n");
                     break;
                 case Table:
-                    makeTable(sb, start, elem.getTable());
+                    makeTable(sb, start, elem);
                     break;
                 case List:
-                    makeList(sb, start, elem.getList());
+                    makeList(sb, start, elem);
                     break;
                 default:
                     break;
@@ -57,8 +57,53 @@ public class PageMaker {
         return sb;
     }
 
-    private StringBuilder makeTable(StringBuilder sb, String start, Table tab){
-        sb.append("<table>\n")
+    private void makeHeading(StringBuilder sb, String start, Element elem) {
+        String tag; 
+        Heading heading = elem.getHeading();
+        switch(heading.getLevel()){
+            case 1: 
+                tag = "h1";
+                break;
+            case 2: 
+                tag = "h2";
+                break;
+            case 3: 
+                tag = "h3";
+                break;
+            default:
+                tag = "h4";
+        }
+        sb.append("<")
+         .append(tag)
+         .append(" ")
+         .append(additionalInfo(elem))
+         .append("> ")
+         .append(heading.getMsg())
+         .append(" </")
+         .append(tag)
+         .append(">\n");
+    }
+
+    private String additionalInfo(Element elem) {
+        StringBuilder sb = new StringBuilder();
+        if (elem.getClasss() != "") {
+            sb.append(" class=\"")
+             .append(elem.getClasss())
+             .append("\"");
+        }
+        if (elem.getId() != "") {
+            sb.append(" id=\"")
+            .append(elem.getClasss())
+            .append("\"");
+        }
+        return sb.toString();
+    }
+
+    private StringBuilder makeTable(StringBuilder sb, String start, Element elem){
+        Table tab = elem.getTable();
+        sb.append("<table ")
+        .append(additionalInfo(elem))
+        .append(">\n")
         .append(start)
         .append("  <tr>\n");
        for(String title : tab.getTitles()){
@@ -84,10 +129,13 @@ public class PageMaker {
        return sb;
     }
 
-    private StringBuilder makeList(StringBuilder sb, String space, LList list){
+    private StringBuilder makeList(StringBuilder sb, String space, Element elems){
+        LList list = elems.getList();
         switch(list.getType()){
             case 0:
-                sb.append("<ul>\n");
+                sb.append("<ul")
+                .append(additionalInfo(elems))
+                .append(">\n");
                 for(String elem : list.getElems()) {
                     sb.append(space)
                     .append("  <li>")
@@ -97,7 +145,9 @@ public class PageMaker {
                 sb.append(space).append( "</ul>\n");
                 break; 
             case 1: 
-            sb.append("<ol>\n");
+            sb.append("<ol")
+            .append(additionalInfo(elems))
+            .append(">\n");
             for(String elem : list.getElems()) {
                 sb.append(space)
                 .append("  <li>")
@@ -108,7 +158,9 @@ public class PageMaker {
                 break;
             case 2: 
                 boolean b = true; 
-                sb.append("<dl>\n");
+                sb.append("<dl")
+                .append(additionalInfo(elems))
+                .append(">\n");
                 for(String elem : list.getElems()) {
                     if (b) {
                         sb.append(space)

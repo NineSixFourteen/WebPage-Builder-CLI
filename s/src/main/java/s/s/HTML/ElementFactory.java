@@ -22,6 +22,8 @@ public class ElementFactory {
             this.id = id; 
         }
 
+
+
         public String getClasss() {
             return classs;
         }
@@ -32,6 +34,10 @@ public class ElementFactory {
 
         public String getId() {
             return id;
+        }
+
+        public Heading getHeading(){
+            return (Heading) this.msg;
         }
 
         public String getString(){
@@ -63,12 +69,12 @@ public class ElementFactory {
         return new Element(ElementID.P, msg, id, classs);
     }
 
-    public Element newHeading(String msg, String id, String classs){
-        return new Element(ElementID.Heading, msg, id, classs);
+    public Element newHeading(String msg, int level, String id, String classs){
+        return new Element(ElementID.Heading, new Heading(level, msg), id, classs);
     }
 
-    public Element newHeading(String msg) {
-        return new Element(ElementID.Heading, msg);
+    public Element newHeading(String msg, int level) {
+        return new Element(ElementID.Heading, new Heading(level, msg));
     }
 
     public Element newTable(Table msg, String id, String classs){

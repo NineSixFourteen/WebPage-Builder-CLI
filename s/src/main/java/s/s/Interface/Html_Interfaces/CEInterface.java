@@ -63,9 +63,10 @@ public class CEInterface {
 
     private static void addParagraph(PageBuilder pb, Scanner scan) {
         System.out.println("Please enter your message");
+        String msg = UserInput.getLine(scan);
         String id = getId(scan);
         String classs = getClasss(scan);
-        pb.addParagraph(UserInput.getLine(scan), id, classs);
+        pb.addParagraph(msg, id, classs);
     }
 
     private static void addHeading(PageBuilder pb, Scanner scan) {

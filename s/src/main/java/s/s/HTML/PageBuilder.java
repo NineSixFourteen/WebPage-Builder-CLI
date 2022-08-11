@@ -27,6 +27,11 @@ public class PageBuilder {
         return page.getTitle();
     }
 
+    public PageBuilder swapElem(int ind, Element elem){
+        page.swap(ind, elem);
+        return this;
+    }
+
     public ArrayList<Element> getBody(){
         return this.page.getBody();
     }
@@ -72,15 +77,12 @@ public class PageBuilder {
     }
 
     public PageBuilder addHeading(String heading, int level) {
-        page.append(EF.newHeading(heading));
+        page.append(EF.newHeading(heading,level));
         return this;
     }
 
     public PageBuilder addHeading(String heading, int level, String id, String classs){
-        page.append(EF.newHeading(heading, id, classs));
+        page.append(EF.newHeading(heading,level, id, classs));
         return this;
     }
-
-    
-    
 }

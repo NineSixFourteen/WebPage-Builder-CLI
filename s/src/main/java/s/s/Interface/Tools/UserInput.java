@@ -27,6 +27,22 @@ public class UserInput {
         } 
     }
 
+    public static String[] getChanges(Scanner scan, String[] old){
+        while(true){
+            System.out.println("Please enter your changes");
+            String line = UserInput.getLine(scan);
+            try {
+                ArrayList<Change> changes = Parser.parseChanges(line);
+                for(Change ch : changes){
+                    old[ch.getInd() - 1] = ch.getChange();
+                }
+                return old;
+            } catch(Exception e) {
+                System.out.println("Error : Format was incorrect please enter in the format\n 1.Yes, 2.No, 3.Something");
+            }
+        }
+    }
+
     public static String[] getList(Scanner scan){
         scan.nextLine();
         ArrayList<String> items = new ArrayList<>();
@@ -53,7 +69,6 @@ public class UserInput {
         return body.toArray(new String[0][0]);
     }
     
-
     public static String getLine(Scanner scan) {
         if(scan.hasNext()) {
             scan.nextLine();
