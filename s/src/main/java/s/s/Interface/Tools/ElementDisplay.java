@@ -1,7 +1,5 @@
 package s.s.Interface.Tools;
 
-import java.util.Scanner;
-
 import dnl.utils.text.table.TextTable;
 import s.s.HTML.Heading;
 import s.s.HTML.LList;
@@ -23,38 +21,8 @@ public class ElementDisplay {
         return sb.toString();
     }
 
-    public static void ViewElementsDeep(PageBuilder pb, Scanner scan) {
-        boolean run = true ; 
-        while(run) {
-            String out = allShallowInfo(pb);
-            System.out.println("Please select the element you would like to or 0 to go back or -1 to show the elements again");
-            int option = UserInput.getIntBewteen(scan, -1, 5);
-            switch(option) {
-                case -1:
-                    System.out.println(out);
-                    break;
-                case 0:
-                    run = false;
-                    break;
-                default:
-                    if(option - 1  < pb.getBody().size() ){
-                        String out2 = deepInfo(pb.getBody().get(option - 1)); 
-                        System.out.println(out2);
-                    } else {
-                        System.out.println(
-                            new StringBuilder()
-                             .append("No element of number ")
-                             .append(option)
-                             .append("\nPlease enter a number bewteen 1 and")
-                             .append(pb.getBody().size() + 1)
-                        );
-                    }
-                    break;
-            }
-        }
-    }
-
-    private static String deepInfo(Element element) {
+   
+    public  static String deepInfo(Element element) {
         StringBuilder sb =  new StringBuilder()
          .append("Class : ")
          .append(element.getClasss())

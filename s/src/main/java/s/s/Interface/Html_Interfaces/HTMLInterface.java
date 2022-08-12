@@ -21,7 +21,7 @@ public class HTMLInterface {
                 .append("  1.View elements\n")
                 .append("  2.Create new element\n")
                 .append("  3.View Page in browser\n")
-                .append("  4.return to previous option\n")
+                .append("  4.return to previous option")
             );
             int option = UserInput.getIntBewteen(scan, 1,4); 
             switch(option) {

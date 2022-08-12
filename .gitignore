@@ -4,3 +4,7 @@
 s/target/classes/s/s/HTML/Table.class
 s/target/classes/s/s/HTML/TableBuilder.class
 *.class
+*.lst
+*.lst
+*.class
+s/target/classes/s/s/Interface/Html_Interfaces/VEInterface.class
