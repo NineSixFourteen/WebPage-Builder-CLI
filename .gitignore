@@ -8,3 +8,4 @@ s/target/classes/s/s/HTML/TableBuilder.class
 *.lst
 *.class
 s/target/classes/s/s/Interface/Html_Interfaces/VEInterface.class
+*.HTML
