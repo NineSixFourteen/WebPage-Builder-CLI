@@ -1,6 +1,7 @@
 package s.s.HTML;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import s.s.HTML.ElementFactory.Element;
 
@@ -8,6 +9,7 @@ public class PageBuilder {
 
     private Page page;
     private ElementFactory EF; 
+    private Set<String> Targets; // For CSS is ID, CLASSES   
 
     public PageBuilder() {
         page = new Page();
@@ -42,6 +44,7 @@ public class PageBuilder {
     }
 
     public PageBuilder addParagraph(String para, String id, String classs){
+        Targets.add(id);Targets.add(classs);
         page.append(EF.newParagraph(para, id, classs));
         return this;
     }
@@ -52,6 +55,7 @@ public class PageBuilder {
     }
 
     public PageBuilder addTable(Table tb, String id, String classs){
+        Targets.add(id);Targets.add(classs);
         page.append(EF.newTable(tb, id, classs));
         return this;
     }
@@ -62,6 +66,7 @@ public class PageBuilder {
     }
 
     public PageBuilder addDiv(ArrayList<Element> page2, String id, String classs){
+        Targets.add(id);Targets.add(classs);
         page.append(EF.newDiv(page2, id, classs));
         return this;
     }
@@ -72,6 +77,7 @@ public class PageBuilder {
     }
 
     public PageBuilder addList(LList list, String id, String classs){
+        Targets.add(id);Targets.add(classs);
         page.append(EF.newList(list, id, classs));
         return this;
     }
@@ -82,6 +88,7 @@ public class PageBuilder {
     }
 
     public PageBuilder addHeading(String heading, int level, String id, String classs){
+        Targets.add(id);Targets.add(classs);
         page.append(EF.newHeading(heading,level, id, classs));
         return this;
     }

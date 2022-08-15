@@ -11,6 +11,7 @@ import s.s.HTML.ElementFactory.Element;
 import s.s.Interface.Tools.ElementDisplay;
 import s.s.Interface.Tools.UserInput;
 
+// Edit Element Interface
 public class EEInterface {
 
     public static void init(PageBuilder pb, Scanner scan) {
@@ -113,10 +114,10 @@ public class EEInterface {
                 pb.swapElem(ind, EF.newHeading(element.getHeading().getMsg(), level, element.getId(), element.getClasss()));
                 break;
             case 2: 
-            System.out.println("Please enter the message");
-            String msg = UserInput.getLine(scan);
-            pb.swapElem(ind, EF.newHeading(msg, element.getHeading().getLevel(), element.getId(), element.getClasss()));
-                break;
+                System.out.println("Please enter the message");
+                String msg = UserInput.getLine(scan);
+                pb.swapElem(ind, EF.newHeading(msg, element.getHeading().getLevel(), element.getId(), element.getClasss()));
+                    break;
             case 0:
             default: 
         }

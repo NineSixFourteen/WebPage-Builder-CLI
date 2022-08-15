@@ -58,29 +58,17 @@ public class PageMaker {
     }
 
     private void makeHeading(StringBuilder sb, String start, Element elem) {
-        String tag; 
         Heading heading = elem.getHeading();
-        switch(heading.getLevel()){
-            case 1: 
-                tag = "h1";
-                break;
-            case 2: 
-                tag = "h2";
-                break;
-            case 3: 
-                tag = "h3";
-                break;
-            default:
-                tag = "h4";
-        }
         sb.append("<")
-         .append(tag)
+         .append('h')
+         .append(heading.getLevel())
          .append(" ")
          .append(additionalInfo(elem))
          .append("> ")
          .append(heading.getMsg())
          .append(" </")
-         .append(tag)
+         .append('h')
+         .append(heading.getLevel())
          .append(">\n");
     }
 

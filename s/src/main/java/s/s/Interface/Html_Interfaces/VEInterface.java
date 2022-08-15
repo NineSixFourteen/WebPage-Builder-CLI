@@ -12,14 +12,14 @@ public class VEInterface {
 
     public static void init(PageBuilder pb, Scanner scan){
         System.out.println("The elements of the page " + pb.getTitle() + "are ");
-        String out = ElementDisplay.allShallowInfo(pb);
-        System.out.print(out);
+        System.out.print(ElementDisplay.allShallowInfo(pb));
         System.out.println(
             new StringBuilder()
              .append("Would you like to")
              .append("  1. View an element in more detail")
-             .append("  2. Edit an Element")
-             .append("  3. Go Back")
+             .append("  2. Move a element ")
+             .append("  3. Edit an Element")
+             .append("  4. Go Back")
             );
         int option = UserInput.getIntBewteen(scan, 1, 3);
         switch(option) {
@@ -27,9 +27,10 @@ public class VEInterface {
                 ViewElementsDeep(pb, scan);
                 break;
             case 2: 
-                EEInterface.init(pb, scan);
-            case 3: 
+                REInterface.init(pb, scan);
                 break;
+            case 3: 
+                EEInterface.init(pb, scan); 
         }
     }
 

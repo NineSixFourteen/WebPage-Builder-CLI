@@ -70,8 +70,8 @@ public class CEInterface {
     }
 
     private static void addHeading(PageBuilder pb, Scanner scan) {
-        System.out.println("Please enter the level of the heading you want bewteen 1 - 3");
-        int level = UserInput.getIntBewteen(scan, 1, 3);
+        System.out.println("Please enter the level of the heading you want bewteen 1 - 6");
+        int level = UserInput.getIntBewteen(scan, 1, 6);
         System.out.println("Please enter the text for the heading");
         String msg = UserInput.getLine(scan);
         String id = getId(scan);
