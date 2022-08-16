@@ -1,4 +1,4 @@
-package s.s.Interface.Html_Interfaces;
+package s.s.Interface.CSS_Interfaces;
 
 import java.awt.Desktop;
 import java.io.File;
@@ -12,35 +12,31 @@ import s.s.HTML.PageBuilder;
 import s.s.HTML.PageMaker;
 import s.s.Interface.Tools.UserInput;
 
-public class HTMLInterface {
-
-    public static void init(Website web, Scanner scan) {
-        PageBuilder pb = web.getPb();
-        boolean run = true; 
-        while (run){
-            System.out.println(
+public class CSS_Interface {
+    
+    public static void init(Website web, Scanner scan){
+        System.out.println(
                 new StringBuilder()
                 .append("Pleae select an option\n")
-                .append("  1.View elements\n")
-                .append("  2.Create new element\n")
+                .append("  1.Create new style\n")
+                .append("  2.Edit an elements style\n")
                 .append("  3.View Page in browser\n")
                 .append("  4.return to previous option")
             );
-            int option = UserInput.getIntBewteen(scan, 1,4); 
-            switch(option) {
-                case 1: 
-                    VEInterface.init(pb, scan);
-                    break;
-                case 2: 
-                    CEInterface.init(pb, scan);
-                    break;
-                case 3: 
-                    loadPageInBrowser(pb);
-                    break;
-                case 4: 
-                    run = false; 
-                    break;
-            }
+        int option = UserInput.getIntBewteen(scan, 1,4); 
+        switch(option) {
+            case 1: 
+                
+                break;
+            case 2: 
+                
+                break;
+            case 3: 
+                loadPageInBrowser(web.getPb());
+                break;
+            case 4: 
+                //run = false; 
+                break;
         }
     }
 
@@ -63,6 +59,5 @@ public class HTMLInterface {
             e.printStackTrace();
         }
     }
-}
 
-   
+}
