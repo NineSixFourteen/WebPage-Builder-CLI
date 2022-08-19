@@ -2,7 +2,7 @@ package s.s.Interface.Html_Interfaces;
 
 import java.util.Scanner;
 
-
+import s.s.WebsiteBuilder;
 import s.s.HTML.PageBuilder;
 import s.s.Interface.Tools.ElementDisplay;
 import s.s.Interface.Tools.UserInput;
@@ -10,9 +10,9 @@ import s.s.Interface.Tools.UserInput;
 //View Element Interface 
 public class VEInterface {
 
-    public static void init(PageBuilder pb, Scanner scan){
-        System.out.println("The elements of the page " + pb.getTitle() + "are ");
-        System.out.print(ElementDisplay.allShallowInfo(pb));
+    public static void init(WebsiteBuilder web, Scanner scan){
+        System.out.println("The elements of the page " + web.getPb().getTitle() + "are ");
+        System.out.print(ElementDisplay.allShallowInfo(web.getPb()));
         System.out.println(
             new StringBuilder()
              .append("Would you like to")
@@ -24,13 +24,13 @@ public class VEInterface {
         int option = UserInput.getIntBewteen(scan, 1, 3);
         switch(option) {
             case 1: 
-                ViewElementsDeep(pb, scan);
+                ViewElementsDeep(web.getPb(), scan);
                 break;
             case 2: 
-                REInterface.init(pb, scan);
+                REInterface.init(web, scan);
                 break;
             case 3: 
-                EEInterface.init(pb, scan); 
+                EEInterface.init(web, scan); 
         }
     }
 

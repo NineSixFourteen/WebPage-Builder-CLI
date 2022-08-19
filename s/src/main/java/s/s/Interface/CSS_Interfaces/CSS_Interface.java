@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-import s.s.Website;
+import s.s.WebsiteBuilder;
 import s.s.HTML.Page;
 import s.s.HTML.PageBuilder;
 import s.s.HTML.PageMaker;
@@ -14,7 +14,7 @@ import s.s.Interface.Tools.UserInput;
 
 public class CSS_Interface {
     
-    public static void init(Website web, Scanner scan){
+    public static void init(WebsiteBuilder web, Scanner scan){
         System.out.println(
                 new StringBuilder()
                 .append("Pleae select an option\n")
@@ -26,7 +26,7 @@ public class CSS_Interface {
         int option = UserInput.getIntBewteen(scan, 1,4); 
         switch(option) {
             case 1: 
-                
+                CSInterface.init(web.getCpb(), scan);
                 break;
             case 2: 
                 

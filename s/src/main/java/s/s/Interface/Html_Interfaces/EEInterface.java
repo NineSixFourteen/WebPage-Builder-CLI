@@ -2,6 +2,7 @@ package s.s.Interface.Html_Interfaces;
 
 import java.util.Scanner;
 
+import s.s.WebsiteBuilder;
 import s.s.HTML.ElementFactory;
 import s.s.HTML.ListBuilder;
 import s.s.HTML.PageBuilder;
@@ -14,8 +15,9 @@ import s.s.Interface.Tools.UserInput;
 // Edit Element Interface
 public class EEInterface {
 
-    public static void init(PageBuilder pb, Scanner scan) {
+    public static void init(WebsiteBuilder web, Scanner scan) {
         while(true) {
+            PageBuilder pb = web.getPb();
             String out = ElementDisplay.allShallowInfo(pb);
             System.out.println("Please enter the number of the element you would like to edit\n or 0 to exit");
             System.out.println(out);
@@ -26,19 +28,19 @@ public class EEInterface {
             Element element = pb.getBody().get(option - 1);
             switch(element.getType()){
                 case Div:
-                    editDiv(scan, element, pb, option - 1);
+                    editDiv(scan, element, web, option - 1);
                     break;
                 case Heading:
-                    editHeading(scan, element, pb, option -1);
+                    editHeading(scan, element, web, option -1);
                     break;
                 case List:
-                    editList(scan, element, pb, option -1);
+                    editList(scan, element, web, option -1);
                     break;
                 case P:
-                    editPara(scan, element, pb, option - 1);
+                    editPara(scan, element, web, option - 1);
                     break;
                 case Table:
-                    editTable(scan, element , pb, option - 1);
+                    editTable(scan, element , web, option - 1);
                     break;
                 default:
                     break;
@@ -47,18 +49,18 @@ public class EEInterface {
         }
     }
 
-    private static void editPara(Scanner scan, Element element, PageBuilder pb, int ind) {
+    private static void editPara(Scanner scan, Element element, WebsiteBuilder web, int ind) {
         ElementFactory EF = new ElementFactory();
         String msg = UserInput.getLine(scan);
-        pb.swapElem(ind, 
+        web.getPb().swapElem(ind, 
             EF.newParagraph(msg, element.getId(), element.getClasss())
         );
     }
 
-    private static void editList(Scanner scan, Element element, PageBuilder pb, int ind) {
+    private static void editList(Scanner scan, Element element, WebsiteBuilder web, int ind) {
         ElementFactory EF = new ElementFactory();
         String msg = UserInput.getLine(scan);
-        pb.swapElem(ind, 
+        web.getPb().swapElem(ind, 
             EF.newParagraph(msg, element.getId(), element.getClasss())
         );
         System.out.println(
@@ -77,7 +79,7 @@ public class EEInterface {
                  .append("1. Orderderd  2.Unordered  3.Descriptive")
             );
             int type = UserInput.getIntBewteen(scan, 1, 3);
-            pb.swapElem(ind, EF.newList( 
+            web.getPb().swapElem(ind, EF.newList( 
                 new ListBuilder(type)
                     .addElems(element.getList().getElems().toArray(new String[0]))
                     .Build(),
@@ -86,7 +88,7 @@ public class EEInterface {
                 break;
             case 2: 
                 String[] list = UserInput.getList(scan);
-                pb.swapElem(ind, EF.newList(
+                web.getPb().swapElem(ind, EF.newList(
                     new ListBuilder(element.getList().getType())
                     .addElems(list)
                     .Build(),
@@ -97,7 +99,7 @@ public class EEInterface {
         }
     }
 
-    private static void editHeading(Scanner scan, Element element, PageBuilder pb, int ind) {
+    private static void editHeading(Scanner scan, Element element,WebsiteBuilder web, int ind) {
         ElementFactory EF = new ElementFactory();
         System.out.println(
             new StringBuilder()
@@ -111,22 +113,22 @@ public class EEInterface {
             case 1: 
                 System.out.println("Please enter the new level of the heading");
                 int level = UserInput.getIntBewteen(scan, 1, 3);
-                pb.swapElem(ind, EF.newHeading(element.getHeading().getMsg(), level, element.getId(), element.getClasss()));
+                web.getPb().swapElem(ind, EF.newHeading(element.getHeading().getMsg(), level, element.getId(), element.getClasss()));
                 break;
             case 2: 
                 System.out.println("Please enter the message");
                 String msg = UserInput.getLine(scan);
-                pb.swapElem(ind, EF.newHeading(msg, element.getHeading().getLevel(), element.getId(), element.getClasss()));
+                web.getPb().swapElem(ind, EF.newHeading(msg, element.getHeading().getLevel(), element.getId(), element.getClasss()));
                     break;
             case 0:
             default: 
         }
     }
 
-    private static void editDiv(Scanner scan, Element element, PageBuilder pb, int i) {
+    private static void editDiv(Scanner scan, Element element, WebsiteBuilder web, int i) {
     }
 
-    private static void editTable(Scanner scan, Element element, PageBuilder pb, int ind) {
+    private static void editTable(Scanner scan, Element element, WebsiteBuilder web, int ind) {
         System.out.println(
             new StringBuilder()
              .append("Would you like to edit \n")
@@ -137,17 +139,17 @@ public class EEInterface {
         int option = UserInput.getIntBewteen(scan, 0, 2);
         switch(option) {
             case 1: 
-                editTableHeading(scan, element, ind, pb);
+                editTableHeading(scan, element, ind, web);
                 break;
             case 2: 
-                editTableRows(scan, element, ind, pb);
+                editTableRows(scan, element, ind, web);
                 break;
             case 0:
             default: 
         }
     }
 
-    private static void editTableRows(Scanner scan, Element element, int ind, PageBuilder pb) {
+    private static void editTableRows(Scanner scan, Element element, int ind, WebsiteBuilder web) {
         ElementFactory EF = new ElementFactory();
         StringBuilder sb = new StringBuilder();
         Table tab = element.getTable();
@@ -163,7 +165,7 @@ public class EEInterface {
         }
         sb.append("Please select the row you would like to edit");
         body = getNewBody(scan, body, sb.toString());
-        pb.swapElem(ind, 
+        web.getPb().swapElem(ind, 
             EF.newTable(
             new TableBuilder(0, 0)
              .setTitles(tab.getTitles())
@@ -186,7 +188,7 @@ public class EEInterface {
         return body;
     }
 
-    private static void editTableHeading(Scanner scan, Element element,int ind, PageBuilder pb) {
+    private static void editTableHeading(Scanner scan, Element element,int ind,WebsiteBuilder web) {
         ElementFactory EF = new ElementFactory();
         StringBuilder sb = new StringBuilder().append("The current headings are \n");
         Table tab = element.getTable();
@@ -195,7 +197,7 @@ public class EEInterface {
         }
         System.out.println(sb);
         String[] headings = changeRow(scan, tab.getTitles());
-        pb.swapElem(ind, 
+        web.getPb().swapElem(ind, 
             EF.newTable(
                 new TableBuilder(0, 0)
                 .setTitles(headings)

@@ -10,11 +10,6 @@ public class ElementFactory {
         private String id = "";
         private Object msg;
     
-        private Element(ElementID type, Object msg) {
-            this.type = type;
-            this.msg = msg;
-        }
-
         private Element(ElementID type, Object msg, String classs, String id){
             this.type = type;
             this.msg = msg;
@@ -22,81 +17,46 @@ public class ElementFactory {
             this.id = id; 
         }
 
-
-
         public String getClasss() {
             return classs;
         }
-
         public ElementID getType() {
             return type;
         }
-
         public String getId() {
             return id;
         }
-
         public Heading getHeading(){
             return (Heading) this.msg;
         }
-
         public String getString(){
             return (String) this.msg;
         }
-
         @SuppressWarnings("unchecked")
         public ArrayList<Element> getElements(){
             return (ArrayList<Element>) this.msg;
         }
-
         public Table getTable(){
             return (Table) this.msg;
         }
-
         public LList getList(){
             return (LList) this.msg;
         }
     }
-
     public ElementFactory() {
     }
-
-    public Element newParagraph(String msg) {
-        return new Element(ElementID.P, msg);
-    }
-
     public Element newParagraph(String msg, String id, String classs){
         return new Element(ElementID.P, msg, id, classs);
     }
-
     public Element newHeading(String msg, int level, String id, String classs){
         return new Element(ElementID.Heading, new Heading(level, msg), id, classs);
     }
-
-    public Element newHeading(String msg, int level) {
-        return new Element(ElementID.Heading, new Heading(level, msg));
-    }
-
     public Element newTable(Table msg, String id, String classs){
         return new Element(ElementID.Table, msg, id, classs);
     }
-
-    public Element newTable(Table msg){
-        return new Element(ElementID.Table, msg);
-    }
-
     public Element newDiv(ArrayList<Element> pg, String id, String classs){
         return new Element(ElementID.Div, pg, id, classs);
     }
-
-    public Element newDiv(ArrayList<Element> pg){
-        return new Element(ElementID.Div, pg);
-    }
-
-    public Element newList(LList list){
-        return new Element(ElementID.List, list);
-    }
-
     public Element newList(LList list, String id, String classs){
         return new Element(ElementID.List, list, id, classs);
     }

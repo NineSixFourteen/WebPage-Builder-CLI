@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-import s.s.Website;
+import s.s.WebsiteBuilder;
 import s.s.HTML.Page;
 import s.s.HTML.PageBuilder;
 import s.s.HTML.PageMaker;
@@ -14,7 +14,7 @@ import s.s.Interface.Tools.UserInput;
 
 public class HTMLInterface {
 
-    public static void init(Website web, Scanner scan) {
+    public static void init(WebsiteBuilder web, Scanner scan) {
         PageBuilder pb = web.getPb();
         boolean run = true; 
         while (run){
@@ -29,7 +29,7 @@ public class HTMLInterface {
             int option = UserInput.getIntBewteen(scan, 1,4); 
             switch(option) {
                 case 1: 
-                    VEInterface.init(pb, scan);
+                    VEInterface.init(web, scan);
                     break;
                 case 2: 
                     CEInterface.init(pb, scan);

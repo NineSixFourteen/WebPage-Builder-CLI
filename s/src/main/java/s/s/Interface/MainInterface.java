@@ -2,16 +2,14 @@ package s.s.Interface;
 
 import java.util.Scanner;
 
-import s.s.Website;
-import s.s.HTML.Page;
-import s.s.HTML.PageBuilder;
+import s.s.WebsiteBuilder;
 import s.s.Interface.Html_Interfaces.HTMLInterface;
 import s.s.Interface.Tools.UserInput;
 
 public class MainInterface {
 
-    public static Website init(){
-        Website web = new Website(); 
+    public static WebsiteBuilder init(){
+        WebsiteBuilder web = new WebsiteBuilder(); 
         System.out.println(
             new StringBuilder()
                 .append("Welcome to this thing I built for some reason\n")
@@ -35,14 +33,14 @@ public class MainInterface {
         return web;
     }
 
-    private static void makeBasicPage(Website web, Scanner scan) {
+    private static void makeBasicPage(WebsiteBuilder web, Scanner scan) {
         System.out.println("Please enter the name of the webpage");
         String name = UserInput.getLine(scan);
-        //pb.setTitle(name);
+        web.getPb().setTitle(name);
         fillOutPage(web, scan);
     }
 
-    private static void fillOutPage(Website web, Scanner scan) {
+    private static void fillOutPage(WebsiteBuilder web, Scanner scan) {
         boolean run = true; 
         while(run){
             System.out.println(
