@@ -2,15 +2,15 @@ package s.s.Interface.Html_Interfaces;
 
 import java.util.Scanner;
 
+import s.s.WebsiteBuilder;
 import s.s.HTML.ListBuilder;
-import s.s.HTML.PageBuilder;
 import s.s.HTML.TableBuilder;
 import s.s.Interface.Tools.UserInput;
 
 // Create Element Interface
 public class CEInterface {
     
-    public static void init(PageBuilder pb, Scanner scan){
+    public static void init(WebsiteBuilder web, Scanner scan){
         boolean run = true; 
         while(run){
             System.out.println(
@@ -29,16 +29,16 @@ public class CEInterface {
                     run = false;
                     break;
                 case 1:
-                    addHeading(pb,scan);
+                    addHeading(web,scan);
                     break; 
                 case 2:
-                    addParagraph(pb,scan);
+                    addParagraph(web,scan);
                     break;
                 case 3: 
-                    addList(pb, scan);
+                    addList(web, scan);
                     break;
                 case 4:
-                    addTable(pb, scan);
+                    addTable(web, scan);
                     break; 
                 case 5:
                     break; 
@@ -46,13 +46,13 @@ public class CEInterface {
         }
     }
 
-    private static void addTable(PageBuilder pb, Scanner scan) {
+    private static void addTable(WebsiteBuilder web, Scanner scan) {
         System.out.println("Please enter the Headings for your list seperated by a comma");
         String[] headings = UserInput.getList(scan);
         String[][] body = UserInput.getListofList(scan);
         String id = getId(scan);
         String classs = getClasss(scan);
-        pb.addTable(
+        web.addTable(
             new TableBuilder(body.length, headings.length)
              .setTitles(headings)
              .setBody(body)
@@ -61,25 +61,25 @@ public class CEInterface {
         );
     }
 
-    private static void addParagraph(PageBuilder pb, Scanner scan) {
+    private static void addParagraph(WebsiteBuilder web, Scanner scan) {
         System.out.println("Please enter your message");
         String msg = UserInput.getLine(scan);
         String id = getId(scan);
         String classs = getClasss(scan);
-        pb.addParagraph(msg, id, classs);
+        web.addParagraph(msg, id, classs);
     }
 
-    private static void addHeading(PageBuilder pb, Scanner scan) {
+    private static void addHeading(WebsiteBuilder web, Scanner scan) {
         System.out.println("Please enter the level of the heading you want bewteen 1 - 6");
         int level = UserInput.getIntBewteen(scan, 1, 6);
         System.out.println("Please enter the text for the heading");
         String msg = UserInput.getLine(scan);
         String id = getId(scan);
         String classs = getClasss(scan);
-        pb.addHeading(msg, level, id, classs);
+        web.addHeading(msg, level, id, classs);
     }
 
-    private static void addList(PageBuilder pb, Scanner scan){
+    private static void addList(WebsiteBuilder web, Scanner scan){
         System.out.println(
             new StringBuilder()
              .append("Please enter the type of list\n")
@@ -90,7 +90,7 @@ public class CEInterface {
         String[] items = UserInput.getList(scan);
         String id = getId(scan);
         String classs = getClasss(scan);
-        pb.addList(
+        web.addList(
             new ListBuilder(type)
              .addElems(items)
              .Build()

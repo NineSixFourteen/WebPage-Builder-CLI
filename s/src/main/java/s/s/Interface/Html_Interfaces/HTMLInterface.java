@@ -32,7 +32,7 @@ public class HTMLInterface {
                     VEInterface.init(web, scan);
                     break;
                 case 2: 
-                    CEInterface.init(pb, scan);
+                    CEInterface.init(web, scan);
                     break;
                 case 3: 
                     loadPageInBrowser(pb);

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import s.s.HTML.ElementFactory.Element;
-
+import s.s.CSS.CSSElement;
 import s.s.CSS.CSSPageBuilder;
 import s.s.HTML.LList;
 import s.s.HTML.PageBuilder;
@@ -81,6 +81,11 @@ public class WebsiteBuilder {
         pb.addHeading(heading, level, id, classs);
         ids.add(id);
         classes.add(classs);
+        return this;
+    }
+
+    public WebsiteBuilder addElem(CSSElement elem){
+        this.cpb.addElement(elem);
         return this;
     }
     
