@@ -2,8 +2,9 @@ package s.s.CSS;
 
 public class StyleFactory {
 
-    private static Style newMargin(int side, String value) {
+    public static Style newMargin(int side, String value) {
         switch(side){
+            // TODO Remove 0 as kinda pointless 
             case 0: 
                 return new Style(StyleType.margin, value);
             case 1: 
@@ -19,7 +20,7 @@ public class StyleFactory {
         }
     }
 
-    private static Style newBorder(int side, String value) {
+    public static Style newBorder(int side, String value) {
         switch(side){
             case 0: 
                 return new Style(StyleType.border, value);
@@ -36,7 +37,7 @@ public class StyleFactory {
         }
     }
     
-    private static Style newBorderStyle(int side, String value) {
+    public static Style newBorderStyle(int side, String value) {
         switch(side){
             case 0: 
                 return new Style(StyleType.border_style, value);
@@ -53,7 +54,7 @@ public class StyleFactory {
         }
     }
 
-    private static Style newPadding(int side, String value) {
+    public static Style newPadding(int side, String value) {
         switch(side){
             case 0: 
                 return new Style(StyleType.padding, value);
@@ -70,7 +71,7 @@ public class StyleFactory {
         }
     }
     
-    private static Style newColour(int option, String value) {
+    public static Style newColour(int option, String value) {
         switch(option){
             case 0: 
                 return new Style(StyleType.colour, value);
@@ -81,7 +82,7 @@ public class StyleFactory {
         }
     }
 
-    private static Style newSize(int option, String value){
+    public static Style newSize(int option, String value){
         switch(option){
             case 0: 
                 return new Style(StyleType.width, value);
@@ -100,7 +101,7 @@ public class StyleFactory {
         }
     }
 
-    private static Style newBorderOther(int option, String value){
+    public static Style newBorderOther(int option, String value){
         switch(option){
             case 0: 
                 return new Style(StyleType.border_radius ,value);
@@ -113,7 +114,7 @@ public class StyleFactory {
         }
     }
 
-    private static Style newOutline(int option, String value){
+    public static Style newOutline(int option, String value){
         switch(option){
             case 0: 
                 return new Style(StyleType.outline, value);
@@ -130,7 +131,7 @@ public class StyleFactory {
         }
     }
 
-    private static Style newText(int option, String value){
+    public static Style newText(int option, String value){
         switch(option){
             case 0: 
                 return new Style(StyleType.text_transform, value);
@@ -145,7 +146,7 @@ public class StyleFactory {
         }
     }
 
-    private static Style newLetter(int option, String value){
+    public static Style newLetter(int option, String value){
         switch(option){
             case 0: 
                 return new Style(StyleType.letter_spacing, value);
@@ -160,7 +161,7 @@ public class StyleFactory {
         }
     }
 
-    private static Style newFont(int option, String value){
+    public static Style newFont(int option, String value){
         switch(option){
             case 0: 
                 return new Style(StyleType.font_family, value);
@@ -175,7 +176,7 @@ public class StyleFactory {
         }
     }
 
-    private static Style newList(int option, String value){
+    public static Style newList(int option, String value){
         switch(option){
             case 0: 
                 return new Style(StyleType.list_style_type, value);
@@ -190,7 +191,7 @@ public class StyleFactory {
         }
     }
 
-    private static Style newOther(int option, String value){
+    public static Style newOther(int option, String value){
         switch(option){
             case 0: 
                 return new Style(StyleType.visibility, value);

@@ -17,4 +17,8 @@ public class CSSElementBuilder {
         element.getStyles().add(sty);
         return this;
     }
+
+    public CSSElement build(){
+        return element;
+    }
 }

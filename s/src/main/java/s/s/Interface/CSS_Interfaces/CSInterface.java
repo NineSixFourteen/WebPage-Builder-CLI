@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import s.s.WebsiteBuilder;
-import s.s.CSS.CSSElement;
+import s.s.CSS.CSSElementBuilder;
 import s.s.Interface.Tools.UserInput;
 
 //Create Style Interface
@@ -49,9 +49,9 @@ public class CSInterface {
         System.out.println(sb.append("0. to go back"));
         int option = UserInput.getIntBewteen(scan, 0, list.size());
         String name = list.get(option - 1);
-        CSSElement element = new CSSElement(name);
+        CSSElementBuilder element = new CSSElementBuilder(name);
         PEInterface.init(web, scan, element);
-        web.addElem(element);
+        web.addElem(element.build());
         
     }
 
