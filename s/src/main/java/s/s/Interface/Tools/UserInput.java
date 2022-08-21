@@ -131,4 +131,35 @@ public class UserInput {
             default:return "";
         }
     }
+
+    public static String getStyle(Scanner scan) {
+        System.out.println(
+            new StringBuilder()
+             .append("Please choose the style type\n")
+             .append("  1.dotted\n")
+             .append("  2.dashed\n")
+             .append("  3.solid\n")
+             .append("  4.double\n")
+             .append("  5.groove \n")
+             .append("  6.ridge \n")
+             .append("  7.inset\n")
+             .append("  8.outset \n")
+             .append("  9.none \n")
+             .append("  10.hidden  \n")
+        );
+        int option = UserInput.getIntBewteen(scan, 0, 10);
+        switch(option){
+            case 1:return "dotted";
+            case 2:return "dashed";
+            case 3:return "solid";
+            case 4:return "double";
+            case 5:return "groove";
+            case 6:return "ridge";
+            case 7:return "inset";
+            case 8:return "outset";
+            case 9:return "none";
+            case 10:return "hidden";
+            default:return "";
+        }
+    }
 }

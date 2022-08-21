@@ -3,6 +3,7 @@ package s.s.Interface;
 import java.util.Scanner;
 
 import s.s.WebsiteBuilder;
+import s.s.Interface.CSS_Interfaces.CSS_Interface;
 import s.s.Interface.Html_Interfaces.HTMLInterface;
 import s.s.Interface.Tools.UserInput;
 
@@ -57,6 +58,7 @@ public class MainInterface {
                     HTMLInterface.init(web,scan);
                     break;
                 case 2: 
+                    CSS_Interface.init(web, scan);
                     break; 
                 case 3: 
                     break; 
