@@ -37,11 +37,11 @@ public class PEInterface {
              .append("  9.Text\n")
              .append("  10.Letter\n")
              .append("  11.Font\n")
-             .append("  12.List\n")
-             .append("  13.Other\n")
+             //.append("  12.List\n")
+             //.append("  13.Other\n")
              .append("0. Go Back")
         );
-        int option = UserInput.getIntBewteen(scan, 0, 13);
+        int option = UserInput.getIntBewteen(scan, 0, 11);
         switch(option) {
             case 1: 
                 Size_Interface.init(scan,element);

@@ -1,15 +1,9 @@
 package s.s.Interface.CSS_Interfaces;
 
-import java.awt.Desktop;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 import s.s.WebsiteBuilder;
-import s.s.HTML.Page;
-import s.s.HTML.PageBuilder;
-import s.s.HTML.PageMaker;
+
 import s.s.Interface.Tools.UserInput;
 
 public class CSS_Interface {
@@ -34,7 +28,7 @@ public class CSS_Interface {
                     
                     break;
                 case 3: 
-                    loadPageInBrowser(web.getPb());
+                    web.make();
                     break;
                 case 4: 
                     run = false; 
@@ -43,24 +37,5 @@ public class CSS_Interface {
         }
     }
 
-    private static void loadPageInBrowser(PageBuilder pb) {
-        Page p = pb.Build();
-        String page = new PageMaker(p).toString();
-        try {
-            FileWriter myWriter = new FileWriter(p.getTitle() + ".html");
-            myWriter.write(page);
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-            } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        try{
-            File htmlFile = new File(p.getTitle() + ".html");
-            Desktop.getDesktop().browse(htmlFile.toURI());
-        } catch(Exception e){
-            e.printStackTrace();
-        }
-    }
 
 }

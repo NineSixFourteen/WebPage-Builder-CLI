@@ -16,7 +16,24 @@ public class PageMaker {
 
     @Override
     public String toString() {
-        return makeString(0, new StringBuilder(), page.getBody()).toString();
+        return new StringBuilder()
+         .append("<!DOCTYPE html>\n")
+         .append("<html>\n")
+         .append("<head>\n")
+         .append("<link rel=\"stylesheet\" href=\"")
+         .append(page.getTitle())
+         .append(".css\">\n")
+         .append("<title>\n")
+         .append(page.getTitle())
+         .append("\n</title>\n")
+         .append("</head>\n")
+         .append("<body>\n")
+         .append(
+            makeString(0, new StringBuilder(), page.getBody()).toString()
+         )
+         .append("\n</body>\n")
+         .append("</html>\n")
+         .toString();
     }
 
     public StringBuilder makeString(int ind, StringBuilder sb, ArrayList<Element> body) {
@@ -89,7 +106,7 @@ public class PageMaker {
 
     private StringBuilder makeTable(StringBuilder sb, String start, Element elem){
         Table tab = elem.getTable();
-        sb.append("<table ")
+        sb.append("<table")
         .append(additionalInfo(elem))
         .append(">\n")
         .append(start)

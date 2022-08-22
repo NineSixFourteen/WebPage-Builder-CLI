@@ -1,5 +1,9 @@
 package s.s;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -10,7 +14,9 @@ import s.s.HTML.ElementFactory.Element;
 import s.s.CSS.CSSElement;
 import s.s.CSS.CSSPageBuilder;
 import s.s.HTML.LList;
+import s.s.HTML.Page;
 import s.s.HTML.PageBuilder;
+import s.s.HTML.PageMaker;
 import s.s.HTML.Table;
 
 public class WebsiteBuilder {
@@ -89,6 +95,33 @@ public class WebsiteBuilder {
         return this;
     }
     
+    public void make(){
+        write();
+        open();
+    }
+
+    public void write(){
+        Page p = pb.Build();
+        String page = new PageMaker(p).toString();
+        try {
+            FileWriter myWriter = new FileWriter(p.getTitle() + ".html");
+            myWriter.write(page);
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public void open(){
+        try{
+            File htmlFile = new File(pb.getTitle() + ".html");
+            Desktop.getDesktop().browse(htmlFile.toURI());
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 
 
 }

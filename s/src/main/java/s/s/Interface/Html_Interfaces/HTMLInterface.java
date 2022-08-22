@@ -1,21 +1,13 @@
 package s.s.Interface.Html_Interfaces;
 
-import java.awt.Desktop;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 import s.s.WebsiteBuilder;
-import s.s.HTML.Page;
-import s.s.HTML.PageBuilder;
-import s.s.HTML.PageMaker;
 import s.s.Interface.Tools.UserInput;
 
 public class HTMLInterface {
 
     public static void init(WebsiteBuilder web, Scanner scan) {
-        PageBuilder pb = web.getPb();
         boolean run = true; 
         while (run){
             System.out.println(
@@ -35,7 +27,7 @@ public class HTMLInterface {
                     CEInterface.init(web, scan);
                     break;
                 case 3: 
-                    loadPageInBrowser(pb);
+                    web.make();
                     break;
                 case 4: 
                     run = false; 
@@ -44,25 +36,6 @@ public class HTMLInterface {
         }
     }
 
-    private static void loadPageInBrowser(PageBuilder pb) {
-        Page p = pb.Build();
-        String page = new PageMaker(p).toString();
-        try {
-            FileWriter myWriter = new FileWriter(p.getTitle() + ".html");
-            myWriter.write(page);
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-            } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        try{
-            File htmlFile = new File(p.getTitle() + ".html");
-            Desktop.getDesktop().browse(htmlFile.toURI());
-        } catch(Exception e){
-            e.printStackTrace();
-        }
-    }
 }
 
    

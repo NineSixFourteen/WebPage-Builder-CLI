@@ -7,6 +7,7 @@ import org.junit.Test;
 import s.s.HTML.ListBuilder;
 import s.s.HTML.Page;
 import s.s.HTML.PageBuilder;
+import s.s.HTML.PageMaker;
 import s.s.HTML.TableBuilder;
 
 /**
@@ -33,22 +34,23 @@ public class AppTest
              .setRow(0, new String[]{"1","2","3"})
              .setRow(1, new String[]{"3","4","5"})
              .build()
-        ,"","").addDiv(
+        ,"","")
+        .addDiv(
             new PageBuilder()
             .addParagraph("Goodbye World!","","")
             .addParagraph("LMAO","","")
-            .getBody(),"","" 
-        ).addList(
+            .getBody(),"","")
+        .addList(
           new ListBuilder(0)
            .addElems(new String[]{"init","nini","bili"})
-           .Build(),"",""
-        ).addList(
+           .Build(),"","")
+        .addList(
           new ListBuilder(2)
            .addElems(new String[]{"Book","has words","man","has pepe"})
-           .Build(),"",""
-        ).Build();
+           .Build(),"","")
+        .Build();
         assertEquals(
-            p.toString(), 
+            new PageMaker(p).toString(), 
             new StringBuilder()
              .append("<p> Hello world </p>\n")
              .append("<table>\n")
