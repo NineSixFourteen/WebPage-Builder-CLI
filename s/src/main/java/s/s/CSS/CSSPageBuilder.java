@@ -13,4 +13,8 @@ public class CSSPageBuilder {
         return this;
     }
 
+    public CSSPage build(){
+        return page;
+    }
+
 }

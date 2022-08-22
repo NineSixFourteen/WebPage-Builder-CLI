@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import s.s.WebsiteBuilder;
 import s.s.CSS.CSSElementBuilder;
+import s.s.CSS.Type;
 import s.s.Interface.Tools.UserInput;
 
 //Create Style Interface
@@ -23,19 +24,19 @@ public class CSInterface {
         int option = UserInput.getIntBewteen(scan, 0,3); 
         switch(option) {
             case 1: 
-                addStyles(web, web.getElems(), scan);
+                addStyles(web, web.getElems(), scan, Type.ELEM);
                 break;
             case 2: 
-                addStyles(web,new ArrayList<>(web.getIds()), scan);
+                addStyles(web,new ArrayList<>(web.getIds()), scan, Type.ID);
                 break;
             case 3: 
-                addStyles(web, new ArrayList<>(web.getClasses()), scan);
+                addStyles(web, new ArrayList<>(web.getClasses()), scan,Type.CLASS);
                 break;
             default:
         }
     }
 
-    private static void addStyles(WebsiteBuilder web, List<String> list, Scanner scan) {
+    private static void addStyles(WebsiteBuilder web, List<String> list, Scanner scan, Type type) {
         StringBuilder sb = new StringBuilder()
          .append("What would you like to add a style to\n");
         int i = 1;
@@ -49,7 +50,7 @@ public class CSInterface {
         System.out.println(sb.append("0. to go back"));
         int option = UserInput.getIntBewteen(scan, 0, list.size());
         String name = list.get(option - 1);
-        CSSElementBuilder element = new CSSElementBuilder(name);
+        CSSElementBuilder element = new CSSElementBuilder(name,type);
         PEInterface.init(web, scan, element);
         web.addElem(element.build());
         

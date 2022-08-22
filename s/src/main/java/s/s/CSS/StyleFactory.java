@@ -123,7 +123,7 @@ public class StyleFactory {
             case 2: 
                 return new Style(StyleType.outline_offset, value);
             case 3: 
-                return new Style(StyleType.outline_colour, value);
+                return new Style(StyleType.outline_color, value);
             case 4: 
                 return new Style(StyleType.outline_width, value);
             default: 

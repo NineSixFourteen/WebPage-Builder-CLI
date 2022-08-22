@@ -16,7 +16,7 @@ public enum StyleType {
     //border_other
     border_radius,  border_width, border_colour,
     //outline
-    outline, outline_style,  outline_colour,  outline_width,  outline_offset, 
+    outline, outline_style,  outline_color,  outline_width,  outline_offset, 
     //text
     text_transform, text_indent, text_shadow, text_align,
     //letter

@@ -10,3 +10,4 @@ s/target/classes/s/s/HTML/TableBuilder.class
 s/target/classes/s/s/Interface/Html_Interfaces/VEInterface.class
 *.HTML
 *.class
+*.css

@@ -12,6 +12,7 @@ import java.util.Set;
 
 import s.s.HTML.ElementFactory.Element;
 import s.s.CSS.CSSElement;
+import s.s.CSS.CSSMaker;
 import s.s.CSS.CSSPageBuilder;
 import s.s.HTML.LList;
 import s.s.HTML.Page;
@@ -103,10 +104,14 @@ public class WebsiteBuilder {
     public void write(){
         Page p = pb.Build();
         String page = new PageMaker(p).toString();
+        String CSS = new CSSMaker(cpb.build()).toString();
         try {
-            FileWriter myWriter = new FileWriter(p.getTitle() + ".html");
-            myWriter.write(page);
-            myWriter.close();
+            FileWriter HTMLW = new FileWriter(p.getTitle() + ".html");
+            FileWriter CSSW = new FileWriter(p.getTitle() + ".css");
+            HTMLW.write(page);
+            HTMLW.close();
+            CSSW.write(CSS);
+            CSSW.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
             System.out.println("An error occurred.");

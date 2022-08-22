@@ -4,8 +4,8 @@ public class CSSElementBuilder {
     
     private CSSElement element;
     
-    public CSSElementBuilder(String name){
-        element = new CSSElement(name);
+    public CSSElementBuilder(String name, Type type){
+        element = new CSSElement(name,type);
     }
 
     public CSSElementBuilder setState(State st){
