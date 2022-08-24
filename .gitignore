@@ -11,3 +11,6 @@ s/target/classes/s/s/Interface/Html_Interfaces/VEInterface.class
 *.HTML
 *.class
 *.css
+*.class
+*.xml
+*.txt

@@ -3,8 +3,11 @@ package s.s.Interface;
 import java.util.Scanner;
 
 import s.s.WebsiteBuilder;
+import s.s.CSS.CSSPageBuilder;
+import s.s.HTML.PageBuilder;
 import s.s.Interface.CSS_Interfaces.CSS_Interface;
 import s.s.Interface.Html_Interfaces.HTMLInterface;
+import s.s.Interface.Parser_Interfaces.ParserInterface;
 import s.s.Interface.Tools.UserInput;
 
 public class MainInterface {
@@ -25,7 +28,10 @@ public class MainInterface {
             case 1: 
                 makeBasicPage(web,scan); 
                 break;
-            case 2: 
+            case 2:
+                PageBuilder page = ParserInterface.init(scan); 
+                web = new WebsiteBuilder(page, new CSSPageBuilder());
+                fillOutPage(web, scan);
                 break; 
             case 3:
                 break;

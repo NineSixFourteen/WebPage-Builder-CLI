@@ -2,31 +2,32 @@ package s.s.Parser;
 
 import org.apache.commons.lang.text.StrBuilder;
 
-import s.s.HTML.Page;
 import s.s.HTML.PageBuilder;
 import s.s.HTML.Table;
 
 
 public class HTMLParser {
 
-    public Page parsePage(String page){
+    public static PageBuilder parsePage(String page){
         StrBuilder sb = new StrBuilder(page);
         PageBuilder pb = new PageBuilder();
         int end;
         String message ;
         while(!sb.isEmpty()){
             if(sb.startsWith("<table")){
-                end = ParserHelper.lookForEnd("</table>",new StrBuilder(sb.toString())); // Basicly Cloning it ig
-                message = sb.substring(7, end);
+                end = ParserHelper.lookForEnd("</table>",sb);
+                message = sb.substring(6, end );
+                System.out.println("lol");
+                System.out.println(message);
                 getTable(pb, message);
-            } else if(sb.startsWith("<h")){
+            } else if(sb.startsWith("<h") && sb.charAt(2) > 48 && sb.charAt(2) < 58){
                 int level = sb.charAt(2) - 48;
-                end = ParserHelper.lookForEnd("</h" + level + ">",new StrBuilder(sb.toString()));
-                message = sb.substring(4, end);
+                end = ParserHelper.lookForEnd("</h" + level + ">",sb);
+                message = sb.substring(3, end);
                 getHead(pb,message,level);
             } else if(sb.startsWith("<p")){
-                end = ParserHelper.lookForEnd("</p>",new StrBuilder(sb.toString()));
-                message = sb.substring(3, end);
+                end = ParserHelper.lookForEnd("</p>",sb);
+                message = sb.substring(2, end );
                 getPara(pb,message);
             } else {
                 end = 1;
@@ -34,19 +35,20 @@ public class HTMLParser {
             }
             sb.delete(0, end);
         }
-        return pb.Build();
+        return pb;
     }
 
-    private void getPara(PageBuilder pb, String message) {
+    private static void getPara(PageBuilder pb, String message) {
         int ind = findClose(message);
         String info = message.substring(0, ind);
         message = message.substring(ind + 1);
+        System.out.println(message);
         String ID = checkID(info);
         String classs = checkClass(info);
         pb.addParagraph(message, ID, classs);
     }
 
-    private void getHead(PageBuilder pb, String message, int level) {
+    private static void getHead(PageBuilder pb, String message, int level) {
         int ind = findClose(message);
         String info = message.substring(0, ind);
         message = message.substring(ind + 1);
@@ -55,7 +57,7 @@ public class HTMLParser {
         pb.addHeading(message, level, ID, classs);
     }
 
-    private void getTable(PageBuilder pb, String message) {
+    private static void getTable(PageBuilder pb, String message) {
         int ind = findClose(message);
         String info = message.substring(0, ind);
         String ID = checkID(info);
@@ -65,7 +67,7 @@ public class HTMLParser {
         pb.addTable(tab, ID, classs);
     }
 
-    private int findClose(String message) {
+    private static int findClose(String message) {
         int ind = 0;
         while(message.charAt(ind) != '>'){
             ind++;
@@ -73,7 +75,7 @@ public class HTMLParser {
         return ind;
     }
 
-    private String checkID(String info) {
+    private static String checkID(String info) {
         StrBuilder sb = new StrBuilder(info);
         while(!sb.isEmpty()){
             if(!sb.startsWith("id")){
@@ -93,7 +95,7 @@ public class HTMLParser {
         return "";
     }
 
-    private String checkClass(String info) {
+    private static String checkClass(String info) {
         StrBuilder sb = new StrBuilder(info);
         while(!sb.isEmpty()){
             if(!sb.startsWith("class")){

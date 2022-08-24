@@ -37,6 +37,14 @@ public class WebsiteBuilder {
         this.elems = Arrays.asList("P","H1","H2","H3","H4","H5","H6","Table");
     }
 
+    public WebsiteBuilder(PageBuilder pb, CSSPageBuilder cpb){
+        this.pb = pb;
+        this.cpb = cpb; 
+        this.ids = new HashSet<>();
+        this.classes = new HashSet<>();
+        this.elems = Arrays.asList("P","H1","H2","H3","H4","H5","H6","Table");
+    }
+
     //getters 
     public Set<String> getClasses() {
         return classes;
@@ -118,6 +126,7 @@ public class WebsiteBuilder {
             e.printStackTrace();
         }
     }
+
 
     public void open(){
         try{
