@@ -9,7 +9,9 @@ import s.s.HTML.Table;
 public class HTMLParser {
 
     public static PageBuilder parsePage(String page){
-        StrBuilder sb = new StrBuilder(page);
+        StrBuilder sb = 
+         new StrBuilder(page)
+         .replaceAll("\n",""); // Remove Spaces and New Lines
         PageBuilder pb = new PageBuilder();
         int end;
         String message ;
@@ -17,8 +19,6 @@ public class HTMLParser {
             if(sb.startsWith("<table")){
                 end = ParserHelper.lookForEnd("</table>",sb);
                 message = sb.substring(6, end );
-                System.out.println("lol");
-                System.out.println(message);
                 getTable(pb, message);
             } else if(sb.startsWith("<h") && sb.charAt(2) > 48 && sb.charAt(2) < 58){
                 int level = sb.charAt(2) - 48;
@@ -42,7 +42,6 @@ public class HTMLParser {
         int ind = findClose(message);
         String info = message.substring(0, ind);
         message = message.substring(ind + 1);
-        System.out.println(message);
         String ID = checkID(info);
         String classs = checkClass(info);
         pb.addParagraph(message, ID, classs);

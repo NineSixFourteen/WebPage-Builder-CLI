@@ -21,7 +21,7 @@ public class VEInterface {
              .append("  3. Edit an Element")
              .append("  4. Go Back")
             );
-        int option = UserInput.getIntBewteen(scan, 1, 3);
+        int option = UserInput.getIntBewteen(scan, 1, 4);
         switch(option) {
             case 1: 
                 ViewElementsDeep(web.getPb(), scan);
