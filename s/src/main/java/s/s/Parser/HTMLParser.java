@@ -1,7 +1,10 @@
 package s.s.Parser;
 
+import java.util.ArrayList;
+
 import org.apache.commons.lang.text.StrBuilder;
 
+import s.s.HTML.ListBuilder;
 import s.s.HTML.PageBuilder;
 import s.s.HTML.Table;
 
@@ -13,107 +16,47 @@ public class HTMLParser {
          new StrBuilder(page)
          .replaceAll("\n",""); // Remove Spaces and New Lines
         PageBuilder pb = new PageBuilder();
-        int end;
-        String message ;
         while(!sb.isEmpty()){
             if(sb.startsWith("<table")){
-                end = ParserHelper.lookForEnd("</table>",sb);
-                message = sb.substring(6, end );
-                getTable(pb, message);
+                getTable(pb, sb);
             } else if(sb.startsWith("<h") && sb.charAt(2) > 48 && sb.charAt(2) < 58){
-                int level = sb.charAt(2) - 48;
-                end = ParserHelper.lookForEnd("</h" + level + ">",sb);
-                message = sb.substring(3, end);
-                getHead(pb,message,level);
+                getHead(pb,sb);
             } else if(sb.startsWith("<p")){
-                end = ParserHelper.lookForEnd("</p>",sb);
-                message = sb.substring(2, end );
-                getPara(pb,message);
+                getPara(pb,sb);
+            } else if(sb.startsWith("<ol")){
+                getList(pb,sb, 0);
+            } else if(sb.startsWith("<ul")){
+                getList(pb,sb, 1);
+            } else if(sb.startsWith("<dl")){
+                getList(pb,sb, 2);
             } else {
-                end = 1;
-                message = "";
+                sb.deleteCharAt(0);
             }
-            sb.delete(0, end);
         }
         return pb;
     }
 
-    private static void getPara(PageBuilder pb, String message) {
-        int ind = findClose(message);
-        String info = message.substring(0, ind);
-        message = message.substring(ind + 1);
-        String ID = checkID(info);
-        String classs = checkClass(info);
-        pb.addParagraph(message, ID, classs);
+    private static void getList(PageBuilder pb, StrBuilder message, int i) {
+        ArrayList<String> info = ParserHelper.scanTag(message);
+        ArrayList<String> elems = TableParser.getRow(new StrBuilder(info.get(2)));
+        pb.addList(new ListBuilder(i).addElems(elems.toArray(new String[0])).Build(), info.get(0), info.get(1));
     }
 
-    private static void getHead(PageBuilder pb, String message, int level) {
-        int ind = findClose(message);
-        String info = message.substring(0, ind);
-        message = message.substring(ind + 1);
-        String ID = checkID(info);
-        String classs = checkClass(info);
-        pb.addHeading(message, level, ID, classs);
+    private static void getPara(PageBuilder pb, StrBuilder message) {
+        ArrayList<String> info = ParserHelper.scanTag(message);
+        pb.addParagraph(info.get(2), info.get(0), info.get(1));
     }
 
-    private static void getTable(PageBuilder pb, String message) {
-        int ind = findClose(message);
-        String info = message.substring(0, ind);
-        String ID = checkID(info);
-        String classs = checkClass(info);
-        message = message.substring(ind + 1);
-        Table tab = TableParser.getTable(message);
-        pb.addTable(tab, ID, classs);
+    private static void getHead(PageBuilder pb, StrBuilder message) {
+        int level = message.charAt(2) - 48;
+        ArrayList<String> info = ParserHelper.scanTag(message);
+        pb.addHeading(info.get(2), level, info.get(0), info.get(1));
     }
 
-    private static int findClose(String message) {
-        int ind = 0;
-        while(message.charAt(ind) != '>'){
-            ind++;
-        }
-        return ind;
+    private static void getTable(PageBuilder pb, StrBuilder message) {
+        ArrayList<String> info = ParserHelper.scanTag(message);
+        Table tab = TableParser.getTable(info.get(2));
+        pb.addTable(tab, info.get(0), info.get(1));
     }
 
-    private static String checkID(String info) {
-        StrBuilder sb = new StrBuilder(info);
-        while(!sb.isEmpty()){
-            if(!sb.startsWith("id")){
-                sb.deleteCharAt(0);
-            } else {
-                sb.deleteCharAt(3);
-                int ind = 0;
-                while(ind < sb.length() && sb.charAt(ind) != '"'){
-                    ind++;
-                }
-                if(ind >= sb.length()){
-                    return "";
-                }
-                return sb.substring(0, --ind);
-            }
-        }
-        return "";
-    }
-
-    private static String checkClass(String info) {
-        StrBuilder sb = new StrBuilder(info);
-        while(!sb.isEmpty()){
-            if(!sb.startsWith("class")){
-                sb.deleteCharAt(0);
-            } else {
-                sb.deleteCharAt(6);
-                int ind = 0;
-                while(ind < sb.length() && sb.charAt(ind) != '"'){
-                    ind++;
-                }
-                if(ind >= sb.length()){
-                    return "";
-                }
-                return sb.substring(0, --ind);
-            }
-        }
-        return "";
-    }
-
-
-    
 }

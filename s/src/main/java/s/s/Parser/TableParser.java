@@ -30,6 +30,7 @@ public class TableParser {
     public static ArrayList<String> getRow(StrBuilder sb) {
         ArrayList<String> strs = new ArrayList<>();
         StrBuilder rows = ParserHelper.grabTag(sb);
+
         while(true){
             while(rows.startsWith(" ")) rows.deleteCharAt(0);
             if(!rows.isEmpty()){
@@ -41,6 +42,4 @@ public class TableParser {
         while(sb.startsWith(" ")) sb.deleteCharAt(0);
         return strs;
     }
-    
-
 }

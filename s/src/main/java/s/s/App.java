@@ -21,6 +21,7 @@ public class App
     String content = new String(Files.readAllBytes(Paths.get("LSL.html")));
     PageBuilder page = HTMLParser.parsePage(content);
     web = new WebsiteBuilder(page, new CSSPageBuilder());
+    web.getPb().setTitle("LSL");
     Scanner scan = new Scanner(System.in);
     fillOutPage(web, scan);
   }

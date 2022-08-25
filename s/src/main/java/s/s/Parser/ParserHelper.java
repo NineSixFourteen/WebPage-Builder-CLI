@@ -1,5 +1,7 @@
 package s.s.Parser;
 
+import java.util.ArrayList;
+
 import org.apache.commons.lang.text.StrBuilder;
 
 public class ParserHelper {
@@ -28,16 +30,68 @@ public class ParserHelper {
             sbr.append(sb.charAt(ind++));
         }
         return sbr.toString();
-
     }
 
     public static StrBuilder grabTag(StrBuilder sb ) {
-
         String Tag = getTag(sb);
         int end = ParserHelper.lookForEnd("</" + Tag + ">", sb);
-        StrBuilder rows = new StrBuilder(sb.substring(4, end));
+        StrBuilder rows = new StrBuilder(sb.substring(Tag.length() + 2, end));
         sb.delete(0, end  + Tag.length() + 3);
         return rows;
+    }
+
+    public static ArrayList<String> scanTag(StrBuilder sb){
+        ArrayList<String> info = new ArrayList<>();
+        info.add(checkID(sb.toString()));
+        info.add(checkClass(sb.toString()));
+        info.add(grabTag(sb).toString());
+        return info;
+    }
+
+    private static String checkID(String info) {
+        StrBuilder sb = new StrBuilder(info);
+        while(!sb.isEmpty()){
+            if(!sb.startsWith("id")){
+                if(sb.charAt(0) == '>'){
+                    return "";
+                }
+                sb.deleteCharAt(0);
+            } else {
+                sb.deleteCharAt(3);
+                int ind = 0;
+                while(ind < sb.length() && sb.charAt(ind) != '"'){
+                    ind++;
+                }
+                if(ind >= sb.length()){
+                    return "";
+                }
+                return sb.substring(0, --ind);
+            }
+        }
+        return "";
+    }
+
+    private static String checkClass(String info) {
+        StrBuilder sb = new StrBuilder(info);
+        while(!sb.isEmpty()){
+            if(!sb.startsWith("class")){
+                if(sb.charAt(0) == '>'){
+                    return "";
+                }
+                sb.deleteCharAt(0);
+            } else {
+                sb.deleteCharAt(6);
+                int ind = 0;
+                while(ind < sb.length() && sb.charAt(ind) != '"'){
+                    ind++;
+                }
+                if(ind >= sb.length()){
+                    return "";
+                }
+                return sb.substring(0, --ind);
+            }
+        }
+        return "";
     }
     
 }
