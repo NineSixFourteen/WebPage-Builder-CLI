@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import s.s.HTML.PageBuilder;
 import s.s.Interface.Tools.UserInput;
-import s.s.Parser.HTMLParser;
+import s.s.Parser.HTMLParser.HTMLParser;
 
 public class ParserInterface {
 

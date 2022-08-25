@@ -1,4 +1,4 @@
-package s.s.Parser;
+package s.s.Parser.HTMLParser;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package s.s.Parser;
+package s.s.Parser.HTMLParser;
 
 import java.util.ArrayList;
 
@@ -38,8 +38,19 @@ public class HTMLParser {
 
     private static void getList(PageBuilder pb, StrBuilder message, int i) {
         ArrayList<String> info = ParserHelper.scanTag(message);
-        ArrayList<String> elems = TableParser.getRow(new StrBuilder(info.get(2)));
-        pb.addList(new ListBuilder(i).addElems(elems.toArray(new String[0])).Build(), info.get(0), info.get(1));
+        StrBuilder items = new StrBuilder(info.get(2));
+        ArrayList<String> strs = new ArrayList<>();
+        while(true){
+            while(items.startsWith(" ")) items.deleteCharAt(0);
+            if(!items.isEmpty()){
+                strs.add(ParserHelper.grabTag(items).toString());   
+            } else {
+                break;
+            }
+        }
+        pb.addList(
+            new ListBuilder(i).addElems(strs.toArray(new String[0])).Build(),
+            info.get(0), info.get(1));
     }
 
     private static void getPara(PageBuilder pb, StrBuilder message) {

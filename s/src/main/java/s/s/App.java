@@ -11,16 +11,19 @@ import s.s.Interface.MainInterface;
 import s.s.Interface.CSS_Interfaces.CSS_Interface;
 import s.s.Interface.Html_Interfaces.HTMLInterface;
 import s.s.Interface.Tools.UserInput;
-import s.s.Parser.HTMLParser;
+import s.s.Parser.CSSParser.CSSParser;
+import s.s.Parser.HTMLParser.HTMLParser;
 
 public class App 
-{
+{ 
   public static void main( String[] args ) throws IOException {
     //MainInterface.init();
     WebsiteBuilder web ;
     String content = new String(Files.readAllBytes(Paths.get("LSL.html")));
+    String CSSContent = new String(Files.readAllBytes(Paths.get("LSL.css")));
     PageBuilder page = HTMLParser.parsePage(content);
-    web = new WebsiteBuilder(page, new CSSPageBuilder());
+    CSSPageBuilder csspage = CSSParser.parsePage(CSSContent);
+    web = new WebsiteBuilder(page, csspage);
     web.getPb().setTitle("LSL");
     Scanner scan = new Scanner(System.in);
     fillOutPage(web, scan);

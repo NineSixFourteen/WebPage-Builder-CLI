@@ -1,4 +1,4 @@
-package s.s.Parser;
+package s.s.Parser.HTMLParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +28,8 @@ public class TableParser {
     }
 
     public static ArrayList<String> getRow(StrBuilder sb) {
-        ArrayList<String> strs = new ArrayList<>();
         StrBuilder rows = ParserHelper.grabTag(sb);
-
+        ArrayList<String> strs = new ArrayList<>();
         while(true){
             while(rows.startsWith(" ")) rows.deleteCharAt(0);
             if(!rows.isEmpty()){
