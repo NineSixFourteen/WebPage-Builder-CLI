@@ -14,7 +14,7 @@ public class HTMLParser {
     public static PageBuilder parsePage(String page){
         StrBuilder sb = 
          new StrBuilder(page)
-         .replaceAll("\n",""); // Remove Spaces and New Lines
+         .replaceAll("\n",""); // Remove New Lines
         PageBuilder pb = new PageBuilder();
         while(!sb.isEmpty()){
             if(sb.startsWith("<table")){
@@ -50,7 +50,8 @@ public class HTMLParser {
         }
         pb.addList(
             new ListBuilder(i).addElems(strs.toArray(new String[0])).Build(),
-            info.get(0), info.get(1));
+            info.get(0), info.get(1)
+        );
     }
 
     private static void getPara(PageBuilder pb, StrBuilder message) {
@@ -60,7 +61,9 @@ public class HTMLParser {
 
     private static void getHead(PageBuilder pb, StrBuilder message) {
         int level = message.charAt(2) - 48;
+        System.out.println(message);
         ArrayList<String> info = ParserHelper.scanTag(message);
+        System.out.println(level + " " + info);
         pb.addHeading(info.get(2), level, info.get(0), info.get(1));
     }
 

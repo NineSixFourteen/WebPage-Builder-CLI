@@ -42,7 +42,7 @@ public class CSInterface {
         int i = 1;
         for(String st : list){
             sb.append("  ")
-             .append(i)
+             .append(i++)
              .append(".")
              .append(st)
              .append("\n");
@@ -53,7 +53,6 @@ public class CSInterface {
         CSSElementBuilder element = new CSSElementBuilder(name,type);
         PEInterface.init(web, scan, element);
         web.addElem(element.build());
-        
     }
 
     

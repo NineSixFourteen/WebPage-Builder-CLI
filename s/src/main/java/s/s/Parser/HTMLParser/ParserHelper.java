@@ -35,7 +35,11 @@ public class ParserHelper {
     public static StrBuilder grabTag(StrBuilder sb ) {
         String Tag = getTag(sb);
         int end = ParserHelper.lookForEnd("</" + Tag + ">", sb);
-        StrBuilder rows = new StrBuilder(sb.substring(Tag.length() + 2, end));
+        int cBrac = 0;
+        while(sb.charAt(cBrac) != '>'){
+            cBrac++;
+        }
+        StrBuilder rows = new StrBuilder(sb.substring(cBrac + 1, end));
         sb.delete(0, end  + Tag.length() + 3);
         return rows;
     }

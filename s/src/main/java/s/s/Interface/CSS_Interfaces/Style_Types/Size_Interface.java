@@ -13,7 +13,7 @@ public class Size_Interface {
         while(run){
             System.out.println(
                 new StringBuilder()
-                .append("Please select what style you would want to add")
+                .append("Please select what style you would want to add\n")
                 .append("  1.Width\n")
                 .append("  2.Height\n")
                 .append("  3.Min_Width\n")

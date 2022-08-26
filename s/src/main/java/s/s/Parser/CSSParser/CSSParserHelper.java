@@ -16,7 +16,6 @@ public class CSSParserHelper {
         String Bracs = GrabBefore(str, '}');
         String[] styles = Bracs.split(";");
         ArrayList<Style> stys = convertToStyle(styles);
-        System.out.println(name);
         CSSElementBuilder ret = new CSSElementBuilder(name,Type.ELEM);
         for(Style sty : stys){
             ret.addStyle(sty);
