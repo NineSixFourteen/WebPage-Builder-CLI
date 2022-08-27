@@ -103,6 +103,13 @@ public class WebsiteBuilder {
         this.cpb.addElement(elem);
         return this;
     }
+
+    public WebsiteBuilder addButon(String msg, String id, String classs){
+        pb.addButton(msg, id, classs);
+        ids.add(id);
+        classes.add(classs);
+        return this;
+    }
     
     public void make(){
         write();

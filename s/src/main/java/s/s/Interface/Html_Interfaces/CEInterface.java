@@ -21,9 +21,10 @@ public class CEInterface {
                 .append("  3. List\n")
                 .append("  4. Table\n")
                 .append("  5. Div\n")
+                .append("  6.Button\n")
                 .append("Or type 0 to go back")
             );
-            int option = UserInput.getIntBewteen(scan, 0, 5);
+            int option = UserInput.getIntBewteen(scan, 0, 6);
             switch(option){
                 case 0: 
                     run = false;
@@ -42,8 +43,18 @@ public class CEInterface {
                     break; 
                 case 5:
                     break; 
+                case 6:
+                    addButon(web,scan);
             }
         }
+    }
+
+    private static void addButon(WebsiteBuilder web, Scanner scan) {
+        System.out.println("Please enter the message for your button");
+        String msg = UserInput.getLine(scan);
+        String id = getId(scan);
+        String classs = getClasss(scan);
+        web.addButon(msg, id, classs);
     }
 
     private static void addTable(WebsiteBuilder web, Scanner scan) {

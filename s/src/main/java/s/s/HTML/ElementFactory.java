@@ -60,4 +60,7 @@ public class ElementFactory {
     public Element newList(LList list, String id, String classs){
         return new Element(ElementID.List, list, id, classs);
     }
+    public Element newButton(String msg, String id, String classs){
+        return new Element(ElementID.Button, msg, id, classs);
+    }
 }

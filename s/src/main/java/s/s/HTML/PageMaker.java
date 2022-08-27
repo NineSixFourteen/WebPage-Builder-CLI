@@ -67,6 +67,12 @@ public class PageMaker {
                 case List:
                     makeList(sb, start, elem);
                     break;
+                case Button: 
+                    sb.append("<button")
+                    .append(additionalInfo(elem))
+                    .append("> ")
+                    .append(elem.getString())
+                    .append(" </button>\n");
                 default:
                     break;
             }
