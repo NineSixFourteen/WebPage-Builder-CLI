@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import s.s.CSS.CSSElementBuilder;
 import s.s.CSS.StyleFactory;
+import s.s.Interface.Tools.CSSInput;
 import s.s.Interface.Tools.UserInput;
 
 public class Font_Interface {
@@ -54,7 +55,7 @@ public class Font_Interface {
             case 2: 
                 return UserInput.getLine(scan);
             case 3: 
-                return UserInput.getLength(scan);
+                return CSSInput.getLength(scan);
             default:
                 return "";
         }

@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import s.s.CSS.CSSElementBuilder;
 import s.s.CSS.StyleFactory;
+import s.s.Interface.Tools.CSSInput;
 import s.s.Interface.Tools.UserInput;
 
 public class Border_Style_Interface {
@@ -24,7 +25,7 @@ public class Border_Style_Interface {
         else if(option == 5){
             System.out.println("You can enter more than one this length for Boder Style ex. 10px 5px\n This will have top and bot will have as 10px and right and left are 5px you can enter a max of 4 sizes");
         }
-        String value = UserInput.getLength(scan);
+        String value = CSSInput.getLength(scan);
         element.addStyle(StyleFactory.newBorderStyle(option, value));
     }
 }

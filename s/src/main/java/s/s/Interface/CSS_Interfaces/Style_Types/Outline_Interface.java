@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import s.s.CSS.CSSElementBuilder;
 import s.s.CSS.StyleFactory;
+import s.s.Interface.Tools.CSSInput;
 import s.s.Interface.Tools.UserInput;
 
 public class Outline_Interface {
@@ -25,19 +26,10 @@ public class Outline_Interface {
         String value;
         switch(option){
             case 1: 
-                value = UserInput.getStyle(scan);
-                element.addStyle(StyleFactory.newBorderOther(option, value));
-                break;
             case 2:
-                value = UserInput.getColour(scan);
-                element.addStyle(StyleFactory.newBorderOther(option, value));
-                break;
             case 3: 
-                value = UserInput.getLength(scan);
-                element.addStyle(StyleFactory.newBorderOther(option, value));
-                break;
             case 4: 
-                value = UserInput.getLength(scan);
+                value = CSSInput.getLength(scan);
                 element.addStyle(StyleFactory.newBorderOther(option, value));
                 break;
             case 5: 
