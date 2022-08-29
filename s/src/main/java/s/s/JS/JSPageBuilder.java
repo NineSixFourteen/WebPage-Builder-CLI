@@ -4,8 +4,8 @@ public class JSPageBuilder {
 
     private JSPage page; 
 
-    public JSPageBuilder(JSPage page){
-        this.page = page;
+    public JSPageBuilder(){
+        this.page = new JSPage();
     }
 
     public JSPageBuilder addFunction(Function func){

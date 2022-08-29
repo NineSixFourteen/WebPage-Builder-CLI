@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Set;
 
 import s.s.HTML.ElementFactory.Element;
+import s.s.JS.Function;
+import s.s.JS.JSPageBuilder;
+import s.s.JS.JSPageMaker;
 import s.s.CSS.CSSElement;
 import s.s.CSS.CSSMaker;
 import s.s.CSS.CSSPageBuilder;
@@ -24,6 +27,7 @@ public class WebsiteBuilder {
     //fields
     private PageBuilder pb; 
     private CSSPageBuilder cpb; 
+    private JSPageBuilder jspb;
     private Set<String> ids; 
     private List<String> elems;
     private Set<String> classes; 
@@ -32,6 +36,7 @@ public class WebsiteBuilder {
     public WebsiteBuilder(){
         pb = new PageBuilder();
         cpb = new CSSPageBuilder();
+        jspb = new JSPageBuilder();
         this.ids = new HashSet<>();
         this.classes = new HashSet<>();
         this.elems = Arrays.asList("P","H1","H2","H3","H4","H5","H6","Table");
@@ -40,6 +45,7 @@ public class WebsiteBuilder {
     public WebsiteBuilder(PageBuilder pb, CSSPageBuilder cpb){
         this.pb = pb;
         this.cpb = cpb; 
+        this.jspb = new JSPageBuilder();
         this.ids = new HashSet<>();
         this.classes = new HashSet<>();
         this.elems = Arrays.asList("P","H1","H2","H3","H4","H5","H6","Table");
@@ -60,6 +66,11 @@ public class WebsiteBuilder {
     }
     public PageBuilder getPb() {
         return pb;
+    }
+    //To add a function 
+    public WebsiteBuilder addFunction(Function func){
+        jspb.addFunction(func);
+        return this;
     }
 
     //To add a html element and store info about id, classes
@@ -120,13 +131,17 @@ public class WebsiteBuilder {
         Page p = pb.Build();
         String page = new PageMaker(p).toString();
         String CSS = new CSSMaker(cpb.build()).toString();
+        String JS = JSPageMaker.make(jspb.Build()).toString();
         try {
             FileWriter HTMLW = new FileWriter(p.getTitle() + ".html");
             FileWriter CSSW = new FileWriter(p.getTitle() + ".css");
+            FileWriter JSW = new FileWriter(p.getTitle() + ".css");
             HTMLW.write(page);
             HTMLW.close();
             CSSW.write(CSS);
             CSSW.close();
+            JSW.write(JS);
+            JSW.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
             System.out.println("An error occurred.");

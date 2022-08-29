@@ -5,6 +5,7 @@ import java.util.Scanner;
 import s.s.WebsiteBuilder;
 import s.s.Interface.CSS_Interfaces.CSS_Interface;
 import s.s.Interface.Html_Interfaces.HTMLInterface;
+import s.s.Interface.JS_Interfaces.JSInterface;
 import s.s.Interface.Parser_Interfaces.ParserInterface;
 import s.s.Interface.Tools.UserInput;
 
@@ -64,6 +65,7 @@ public class MainInterface {
                     CSS_Interface.init(web, scan);
                     break; 
                 case 3: 
+                    JSInterface.init(web, scan);
                     break; 
                 case 4:
                     run = false;

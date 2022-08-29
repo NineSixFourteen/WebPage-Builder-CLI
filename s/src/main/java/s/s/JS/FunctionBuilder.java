@@ -8,8 +8,18 @@ public class FunctionBuilder {
 
     Function func;
     
-    public FunctionBuilder(){
-        func = new Function();
+    public FunctionBuilder(String name){
+        func = new Function(name);
+    }
+
+    public FunctionBuilder addParam(String name){
+        func.getParams().add(name);
+        return this;
+    }
+
+    public FunctionBuilder changeName(String newName){
+        func.setName(newName);
+        return this;
     }
 
     public FunctionBuilder addFor(String var, String value, String condition, Line oLine, ArrayList<Line> lines){
@@ -50,6 +60,10 @@ public class FunctionBuilder {
     public FunctionBuilder addFuncCall(String name , ArrayList<String> values){
         func.getLines().add(LineFactory.newFuncCall(name, values));
         return this;
+    }
+
+    public Function Build(){
+        return func;
     }
     
 }
