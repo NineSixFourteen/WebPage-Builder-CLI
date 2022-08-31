@@ -62,8 +62,8 @@ public class PageBuilder {
         return this;
     }
 
-    public PageBuilder addButton(String msg, String id, String classs){
-        page.append(EF.newButton(msg, id, classs));
+    public PageBuilder addButton(Button button, String id, String classs){
+        page.append(EF.newButton(button, id, classs));
         return this;
     }
 }

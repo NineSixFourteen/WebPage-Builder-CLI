@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import s.s.CSS.CSSElementBuilder;
 import s.s.CSS.StyleFactory;
-import s.s.Interface.Tools.CSSInput;
 import s.s.Interface.Tools.UserInput;
 
 public class Text_Interface {
@@ -27,15 +26,15 @@ public class Text_Interface {
                 value = getTransform(scan);
                 break;
             case 2:
-                value = CSSInput.getLength(scan);
+                value = UserInput.css.getLength(scan);
                 break;
             case 3: 
                 value = new StringBuilder()
-                 .append(CSSInput.getLength(scan))
+                 .append(UserInput.css.getLength(scan))
                  .append(" ")
-                 .append(CSSInput.getLength(scan))
+                 .append(UserInput.css.getLength(scan))
                  .append(" ")
-                 .append(CSSInput.getColour(scan))
+                 .append(UserInput.css.getColour(scan))
                  .toString();
                 break;
             case 4: 

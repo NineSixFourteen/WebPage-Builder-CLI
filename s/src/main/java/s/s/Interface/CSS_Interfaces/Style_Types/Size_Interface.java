@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import s.s.CSS.CSSElementBuilder;
 import s.s.CSS.StyleFactory;
-import s.s.Interface.Tools.CSSInput;
 import s.s.Interface.Tools.UserInput;
 
 public class Size_Interface {
@@ -25,7 +24,7 @@ public class Size_Interface {
             );
             int option = UserInput.getIntBewteen(scan, 0, 6);
             if(option == 0)return;
-            String value = CSSInput.getLength(scan);
+            String value = UserInput.css.getLength(scan);
             element.addStyle(StyleFactory.newSize(option, value));
         }
     }

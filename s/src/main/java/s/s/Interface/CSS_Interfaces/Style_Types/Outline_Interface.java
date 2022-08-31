@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 import s.s.CSS.CSSElementBuilder;
 import s.s.CSS.StyleFactory;
-import s.s.Interface.Tools.CSSInput;
 import s.s.Interface.Tools.UserInput;
 
 public class Outline_Interface {
@@ -29,7 +28,7 @@ public class Outline_Interface {
             case 2:
             case 3: 
             case 4: 
-                value = CSSInput.getLength(scan);
+                value = UserInput.css.getLength(scan);
                 element.addStyle(StyleFactory.newBorderOther(option, value));
                 break;
             case 5: 

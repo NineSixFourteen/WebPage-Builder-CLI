@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import s.s.CSS.CSSElementBuilder;
 import s.s.CSS.StyleFactory;
-import s.s.Interface.Tools.CSSInput;
 import s.s.Interface.Tools.UserInput;
 
 public class Border_Other_Interface {
@@ -22,15 +21,15 @@ public class Border_Other_Interface {
         String value;
         switch(option){
             case 1: 
-                value = CSSInput.getLength(scan);
+                value = UserInput.css.getLength(scan);
                 element.addStyle(StyleFactory.newBorderOther(option, value));
                 break;
             case 2:
-                value = CSSInput.getLength(scan);
+                value = UserInput.css.getLength(scan);
                 element.addStyle(StyleFactory.newBorderOther(option, value));
                 break;
             case 3: 
-                value = CSSInput.getColour(scan);
+                value = UserInput.css.getColour(scan);
                 element.addStyle(StyleFactory.newBorderOther(option, value));
                 break;
             default:

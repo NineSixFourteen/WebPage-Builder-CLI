@@ -3,6 +3,7 @@ package s.s.Interface.Html_Interfaces;
 import java.util.Scanner;
 
 import s.s.WebsiteBuilder;
+import s.s.HTML.Button;
 import s.s.HTML.ListBuilder;
 import s.s.HTML.TableBuilder;
 import s.s.Interface.Tools.UserInput;
@@ -54,7 +55,7 @@ public class CEInterface {
         String msg = UserInput.getLine(scan);
         String id = getId(scan);
         String classs = getClasss(scan);
-        web.addButon(msg, id, classs);
+        web.addButon(new Button(msg, null), id, classs);
     }
 
     private static void addTable(WebsiteBuilder web, Scanner scan) {

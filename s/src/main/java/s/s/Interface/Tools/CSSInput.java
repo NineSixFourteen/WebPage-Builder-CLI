@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 public class CSSInput {
 
-    public static String getLength(Scanner scan) {
+    public static Object css;
+
+    public String getLength(Scanner scan) {
         System.out.println(
             new StringBuilder()
              .append("Please enter the length in one of these unit types\n")
@@ -19,7 +21,7 @@ public class CSSInput {
         return UserInput.getLine(scan); 
     }
 
-    public static String getColour(Scanner scan) {
+    public String getColour(Scanner scan) {
         System.out.println(
             new StringBuilder()
              .append("Would you like to choose your colour by\n")
@@ -59,7 +61,7 @@ public class CSSInput {
         }
     }
 
-    public static String getStyle(Scanner scan) {
+    public String getStyle(Scanner scan) {
         System.out.println(
             new StringBuilder()
              .append("Please choose the style type\n")

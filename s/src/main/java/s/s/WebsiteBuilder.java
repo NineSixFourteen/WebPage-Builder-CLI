@@ -17,6 +17,7 @@ import s.s.JS.JSPageMaker;
 import s.s.CSS.CSSElement;
 import s.s.CSS.CSSMaker;
 import s.s.CSS.CSSPageBuilder;
+import s.s.HTML.Button;
 import s.s.HTML.LList;
 import s.s.HTML.Page;
 import s.s.HTML.PageBuilder;
@@ -115,8 +116,8 @@ public class WebsiteBuilder {
         return this;
     }
 
-    public WebsiteBuilder addButon(String msg, String id, String classs){
-        pb.addButton(msg, id, classs);
+    public WebsiteBuilder addButon(Button button, String id, String classs){
+        pb.addButton(button, id, classs);
         ids.add(id);
         classes.add(classs);
         return this;
