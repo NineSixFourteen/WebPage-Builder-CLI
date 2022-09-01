@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import s.s.CSS.CSSElementBuilder;
 import s.s.CSS.StyleFactory;
-import s.s.Interface.Tools.CSSInput;
 import s.s.Interface.Tools.UserInput;
 
 public class Colour_Interface {
@@ -19,7 +18,7 @@ public class Colour_Interface {
         );
         int option = UserInput.getIntBewteen(scan, 0, 2);
         if(option ==0)return;
-        String value = CSSInput.getColour(scan);
+        String value = UserInput.css.getColour(scan);
         element.addStyle(StyleFactory.newColour(option, value));
     }
     

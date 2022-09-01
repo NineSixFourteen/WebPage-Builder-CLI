@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class UserInput {
 
     public static CSSInput css = new CSSInput();
+    public static JSInput js = new JSInput();
 
     public static int getIntBewteen(Scanner scan, int min, int max){
         while(true){

@@ -55,7 +55,7 @@ public class CEInterface {
         String msg = UserInput.getLine(scan);
         String id = getId(scan);
         String classs = getClasss(scan);
-        web.addButon(new Button(msg, null), id, classs);
+        web.addButon(new Button(msg, UserInput.js.buttonCreation(web, scan)), id, classs);
     }
 
     private static void addTable(WebsiteBuilder web, Scanner scan) {

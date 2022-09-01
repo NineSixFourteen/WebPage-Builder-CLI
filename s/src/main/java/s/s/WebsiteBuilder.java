@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,6 +33,7 @@ public class WebsiteBuilder {
     private Set<String> ids; 
     private List<String> elems;
     private Set<String> classes; 
+    private HashMap<String,Integer> funcNames; 
 
     //constructors
     public WebsiteBuilder(){
@@ -40,6 +42,7 @@ public class WebsiteBuilder {
         jspb = new JSPageBuilder();
         this.ids = new HashSet<>();
         this.classes = new HashSet<>();
+        this.funcNames = new HashMap<>();
         this.elems = Arrays.asList("P","H1","H2","H3","H4","H5","H6","Table");
     }
 
@@ -49,6 +52,7 @@ public class WebsiteBuilder {
         this.jspb = new JSPageBuilder();
         this.ids = new HashSet<>();
         this.classes = new HashSet<>();
+        this.funcNames = new HashMap<>();
         this.elems = Arrays.asList("P","H1","H2","H3","H4","H5","H6","Table");
     }
 
@@ -68,9 +72,14 @@ public class WebsiteBuilder {
     public PageBuilder getPb() {
         return pb;
     }
+    public HashMap<String,Integer> getFuncNames() {
+        return funcNames;
+    }
+
     //To add a function 
     public WebsiteBuilder addFunction(Function func){
         jspb.addFunction(func);
+        funcNames.put(func.getName(), func.getParams().size());
         return this;
     }
 
@@ -81,7 +90,6 @@ public class WebsiteBuilder {
         classes.add(classs);
         return this;
     }
-
 
     public WebsiteBuilder addTable(Table tb, String id, String classs){
         pb.addTable(tb, id, classs);
