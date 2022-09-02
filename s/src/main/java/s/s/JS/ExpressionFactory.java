@@ -7,6 +7,7 @@ import s.s.JS.Expression.DivExpr;
 import s.s.JS.Expression.Expression;
 import s.s.JS.Expression.GTEQExpr;
 import s.s.JS.Expression.GThanExpr;
+import s.s.JS.Expression.GetIdExpr;
 import s.s.JS.Expression.LTEQExpr;
 import s.s.JS.Expression.LThanExpr;
 import s.s.JS.Expression.MulExpr;
@@ -46,6 +47,9 @@ public class ExpressionFactory {
     }
     public Expression newValue(String value){
         return new ValueExpr(value);
+    }
+    public Expression newGet(String id){
+        return new GetIdExpr(id);
     }
     //Binary Expr
     public Expression newAdd(Expression lhs, Expression rhs){

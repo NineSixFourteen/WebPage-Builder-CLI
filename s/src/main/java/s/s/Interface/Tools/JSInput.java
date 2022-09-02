@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import s.s.WebsiteBuilder;
+import s.s.JS.FunctionBuilder;
 import s.s.JS.LineFactory;
+import s.s.JS.Expression.Expression;
 import s.s.JS.Lines.Line;
 
 public class JSInput {
@@ -102,6 +104,10 @@ public class JSInput {
         System.out.println("Please enter the new text");
         String newValue = UserInput.getLine(scan);
         return LineFactory.newStyleChange(id, style,newValue);
+    }
+
+    public Expression getExpression(FunctionBuilder fb, Scanner scan) {
+        return null;
     }
     
 }

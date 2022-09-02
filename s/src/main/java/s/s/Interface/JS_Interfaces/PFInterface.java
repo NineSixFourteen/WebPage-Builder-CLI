@@ -5,6 +5,7 @@ import java.util.Scanner;
 import s.s.WebsiteBuilder;
 import s.s.Interface.Tools.UserInput;
 import s.s.JS.FunctionBuilder;
+import s.s.JS.Expression.Expression;
 // Populate Function Interface
 public class PFInterface {
 
@@ -52,16 +53,14 @@ public class PFInterface {
     private static void declareVar(Scanner scan, FunctionBuilder fb) {
         System.out.println("Please enter the name of the variable");
         String name = UserInput.getLine(scan);
-        System.out.println("Please enter a value");
-        String value = UserInput.getLine(scan);
+        Expression value = UserInput.js.getExpression(fb, scan);
         fb.addVarDec(name, value);
     }
 
     private static void modifyVar(Scanner scan, FunctionBuilder fb) {
         System.out.println("Please enter the name of the variable");
         String name = UserInput.getLine(scan);
-        System.out.println("Please enter a new value");
-        String value = UserInput.getLine(scan);
+        Expression value = UserInput.js.getExpression(fb, scan);
         fb.addVarDec(name, value);
     }
 

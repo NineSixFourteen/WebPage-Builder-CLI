@@ -1,20 +1,22 @@
 package s.s.JS.Lines;
 
+import s.s.JS.Expression.Expression;
+
 public class VarChangeLine implements Line {
 
     String name; 
-    String value;
+    Expression value;
 
-    public VarChangeLine(String name, String value){
+    public VarChangeLine(String name, Expression value){
         this.name = name;
-        this.value = name;
+        this.value = value;
     }
 
     @Override
     public void codeGen(StringBuilder sb) {
         sb.append(name)
         .append(" = ")
-        .append(value)
+        .append(value.value())
         .append(";\n");
     }
 }

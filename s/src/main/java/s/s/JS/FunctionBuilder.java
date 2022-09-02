@@ -39,12 +39,12 @@ public class FunctionBuilder {
         return this;
     }
 
-    public FunctionBuilder addVarDec(String name, String value){
+    public FunctionBuilder addVarDec(String name, Expression value){
         func.getLines().add(LineFactory.newVarDec(name, value));
         return this;
     }
     
-    public FunctionBuilder addVarChange(String name,String value){
+    public FunctionBuilder addVarChange(String name,Expression value){
         func.getLines().add(LineFactory.newVarChange(name, value));
         return this;
     }

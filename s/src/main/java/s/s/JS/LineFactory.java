@@ -28,11 +28,11 @@ public class LineFactory {
         return new IfLine(Condition, lines);
     }
 
-    public static Line newVarDec(String name, String value){
+    public static Line newVarDec(String name, Expression value){
         return new VarDecLine(name, value);
     }
 
-    public static Line newVarChange(String name, String value ){
+    public static Line newVarChange(String name, Expression value ){
         return new VarChangeLine(name, value);
     }
 
