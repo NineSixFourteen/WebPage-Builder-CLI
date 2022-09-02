@@ -2,12 +2,14 @@ package s.s.JS.Lines;
 
 import java.util.ArrayList;
 
+import s.s.JS.Expression.Expression;
+
 public class IfLine implements Line {
 
-    private String condition;
+    private Expression condition;
     private ArrayList<Line> lines; 
 
-    public IfLine(String condition, ArrayList<Line> lines){
+    public IfLine(Expression condition, ArrayList<Line> lines){
         this.condition = condition;
         this.lines = lines;
     }
@@ -15,7 +17,7 @@ public class IfLine implements Line {
     @Override
     public void codeGen(StringBuilder sb) {
         sb.append("if(")
-         .append(condition)
+         .append(condition.value())
          .append("){\n");
         for(Line line : lines){
             line.codeGen(sb);

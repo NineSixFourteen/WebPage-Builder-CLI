@@ -1,7 +1,9 @@
 package s.s.JS;
 
+
 import java.util.ArrayList;
 
+import s.s.JS.Expression.Expression;
 import s.s.JS.Lines.ElemChange;
 import s.s.JS.Lines.ForEachLine;
 import s.s.JS.Lines.ForLine;
@@ -14,7 +16,7 @@ import s.s.JS.Lines.VarDecLine;
 
 public class LineFactory {
 
-    public static Line newFor(String var, String value, String condition, Line oLine, ArrayList<Line> lines){
+    public static Line newFor(String var, String value, Expression condition, Line oLine, ArrayList<Line> lines){
         return new ForLine(var, value, condition, oLine, lines);
     }
 
@@ -22,7 +24,7 @@ public class LineFactory {
         return new ForEachLine(itemName, listName, lines);
     }
 
-    public static Line newIf(String Condition, ArrayList<Line> lines){
+    public static Line newIf(Expression Condition, ArrayList<Line> lines){
         return new IfLine(Condition, lines);
     }
 

@@ -1,7 +1,9 @@
 package s.s.JS;
 
+
 import java.util.ArrayList;
 
+import s.s.JS.Expression.Expression;
 import s.s.JS.Lines.Line;
 
 public class FunctionBuilder {
@@ -22,7 +24,7 @@ public class FunctionBuilder {
         return this;
     }
 
-    public FunctionBuilder addFor(String var, String value, String condition, Line oLine, ArrayList<Line> lines){
+    public FunctionBuilder addFor(String var, String value, Expression condition, Line oLine, ArrayList<Line> lines){
         func.getLines().add(LineFactory.newFor(var, value, condition, oLine, lines));
         return this;
     }
@@ -32,7 +34,7 @@ public class FunctionBuilder {
         return this;
     }
 
-    public FunctionBuilder addIf(String condition, ArrayList<Line> lines){
+    public FunctionBuilder addIf(Expression condition, ArrayList<Line> lines){
         func.getLines().add(LineFactory.newIf(condition, lines));
         return this;
     }

@@ -1,19 +1,22 @@
 package s.s.JS.Lines;
 
+
 import java.util.ArrayList;
+
+import s.s.JS.Expression.Expression;
 
 public class ForLine implements Line {
 
     private String var;
     private String value; 
-    private String condition;  
+    private Expression condition;  
     private Line   oLine;
     private ArrayList<Line> lines;
 
-    public ForLine(String var, String value, String condition, Line oLine, ArrayList<Line> lines) {
+    public ForLine(String var, String value, Expression condition2, Line oLine, ArrayList<Line> lines) {
         this.var = var;
         this.value = value;
-        this.condition = condition;
+        this.condition = condition2;
         this.oLine = oLine;
         this.lines = lines;
     }
@@ -25,7 +28,7 @@ public class ForLine implements Line {
          .append(" = ")
          .append(value)
          .append(" ; ")
-         .append(condition);
+         .append(condition.value());
         oLine.codeGen(sb);
         sb.deleteCharAt(sb.length() - 1); // delete new line 
         sb.deleteCharAt(sb.length() - 1); // delete semi-colan
